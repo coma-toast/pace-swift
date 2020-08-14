@@ -15,6 +15,8 @@
 		AC464E2924E4C25900A266A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC464E2724E4C25900A266A0 /* LaunchScreen.storyboard */; };
 		AC464E3424E4C25900A266A0 /* PaCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3324E4C25900A266A0 /* PaCETests.swift */; };
 		AC464E3F24E4C25900A266A0 /* PaCEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */; };
+		AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E4C24E5D21A00A266A0 /* PaceImage.swift */; };
+		ACF7858924E614F500B4F750 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF7858824E614F500B4F750 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		AC464E3A24E4C25900A266A0 /* PaCEUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaCEUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaCEUITests.swift; sourceTree = "<group>"; };
 		AC464E4024E4C25900A266A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC464E4C24E5D21A00A266A0 /* PaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaceImage.swift; sourceTree = "<group>"; };
+		ACF7858824E614F500B4F750 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,12 @@
 				AC464E1C24E4C25700A266A0 /* AppDelegate.swift */,
 				AC464E1E24E4C25700A266A0 /* SceneDelegate.swift */,
 				AC464E2024E4C25700A266A0 /* ContentView.swift */,
+				AC464E4C24E5D21A00A266A0 /* PaceImage.swift */,
 				AC464E2224E4C25900A266A0 /* Assets.xcassets */,
 				AC464E2724E4C25900A266A0 /* LaunchScreen.storyboard */,
 				AC464E2A24E4C25900A266A0 /* Info.plist */,
 				AC464E2424E4C25900A266A0 /* Preview Content */,
+				ACF7858824E614F500B4F750 /* HomeView.swift */,
 			);
 			path = PaCE;
 			sourceTree = "<group>";
@@ -269,6 +275,8 @@
 			files = (
 				AC464E1D24E4C25700A266A0 /* AppDelegate.swift in Sources */,
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
+				AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */,
+				ACF7858924E614F500B4F750 /* HomeView.swift in Sources */,
 				AC464E2124E4C25700A266A0 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
