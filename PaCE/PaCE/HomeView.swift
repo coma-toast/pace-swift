@@ -10,12 +10,17 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
+        NavigationView {
         VStack {
             HStack {
-                Image("contact").resizable().frame(width: 40, height: 40, alignment: .leading)
-                Spacer()
-                Text("Contacts").font(.title)
-            }.padding().border(Color.gray, width: 1)
+                NavigationLink(destination: ContactView()) {
+                    
+                    Image("contact").resizable().frame(width: 40, height: 40, alignment: .leading)
+                    Spacer()
+                    Text("Contacts").font(.title)
+                    }.padding().border(Color.gray, width: 1)
+
+            }
             HStack {
                 Image("notepad").resizable().frame(width: 40, height: 40, alignment: .leading)
                 Spacer()
@@ -37,6 +42,7 @@ struct HomeView: View {
                 Text("Settings").font(.title)
             }.padding().border(Color.gray, width: 1)
         }.padding(0)
+    }
     }
     
 }

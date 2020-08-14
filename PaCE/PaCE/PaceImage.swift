@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PaceImage: View {
     var body: some View {
-        Image("crane")
+        Image("PaCE Cloud")
             .resizable().aspectRatio(contentMode: .fit)
     }
 }

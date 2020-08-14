@@ -18,22 +18,22 @@ struct ContentView: View {
         VStack {
             HStack {
                 PaceImage()
-            
-            Text("Welcome to PaCE")
-             
-                }.font(.title)
-                .padding()
-            HomeView()
-            }.frame(height: 75)
-    
-    
+                Text("Welcome to PaCE")
+            }
+            .font(.title)
+            .padding()
+            .frame(height: 75)
+        
+            HStack {
+                HomeView()
+            }
+        }
     }
-    }
-    
-
-
+}
+//
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
