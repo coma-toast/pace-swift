@@ -9,7 +9,7 @@
 import Foundation
 
 struct ContactResponse: Codable {
-    let contact: [Contact]
+    let contact: [Contacts]
     
     enum CodingKeys: String, CodingKey {
         case contact = "results"

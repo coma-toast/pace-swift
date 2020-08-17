@@ -11,7 +11,7 @@ import Combine
 
 enum DB {
     static let apiClient = APIClient()
-    static let baseUrl = URL(string: "pace-api.jasondale.me/api/")!
+    static let baseUrl = URL(string: "https://pace-api.jasondale.me/api/")!
 }
     
 enum APIPath: String {
@@ -20,7 +20,7 @@ enum APIPath: String {
 
 extension DB {
     static func request(_ path: APIPath) -> AnyPublisher<ContactResponse, Error> {
-        guard var components = URLComponents(url: baseUrl.appendingPathComponent(path.rawValue), resolvingAgainstBaseURL: true)
+        guard let components = URLComponents(url: baseUrl.appendingPathComponent(path.rawValue), resolvingAgainstBaseURL: true)
             else { fatalError("Couldn't create URLComponents") }
 //        components.queryItems = [URLQueryItem(name: "api_key", value: "your_api_key_here")]
         

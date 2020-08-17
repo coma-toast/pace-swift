@@ -8,6 +8,10 @@
 
 import Foundation
 
+struct Contacts: Codable {
+    let contacts: [Contact]
+}
+
 struct Contact: Codable, Identifiable {
     let id: String
     let created: String

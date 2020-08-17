@@ -9,25 +9,29 @@
 import SwiftUI
 
 struct ContactView: View {
-    
     @ObservedObject var viewModel = ContactViewModel()
     
     var body: some View {
-        List(viewModel.contacts) { contact in
-            HStack {
-                VStack(alignment: .leading) {
-                    HStack{
-                        Text(contact.firstName)
-                            .font(.headline)
-                        Text(contact.lastName)
-                            .font(.headline)
-                        }
-                    Text(contact.company) 
-                        .font(.subheadline)
+        ForEach(viewModel.contacts) {_ in 
+            List(viewModel.contacts) { contact in
+                HStack {
+                    VStack(alignment: .leading) {
+                        HStack{
+                            Text(contact.firstName)
+                                .font(.headline)
+                            Text(contact.lastName)
+                                .font(.headline)
+                            }
+                        Text(contact.company)
+                            .font(.subheadline)
+                    }
                 }
             }
         }
     }
+}
+func loadData() {
+    
 }
 
 struct ContactView_Previews: PreviewProvider {
