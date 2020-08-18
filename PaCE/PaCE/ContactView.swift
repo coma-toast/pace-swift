@@ -12,8 +12,8 @@ struct ContactView: View {
     @ObservedObject var viewModel = ContactViewModel()
     
     var body: some View {
-        ForEach(viewModel.contacts) {_ in 
-            List(viewModel.contacts) { contact in
+        ForEach(viewModel.contacts, id: \.id) { contact in
+//            List(viewModel.contacts) { _ in
                 HStack {
                     VStack(alignment: .leading) {
                         HStack{
@@ -27,7 +27,7 @@ struct ContactView: View {
                     }
                 }
             }
-        }
+//        }
     }
 }
 func loadData() {

@@ -9,9 +9,9 @@
 import Foundation
 
 struct ContactResponse: Codable {
-    let contact: [Contacts]
+    let contacts: [Contact]
     
     enum CodingKeys: String, CodingKey {
-        case contact = "results"
+        case contacts = ""
     }
 }

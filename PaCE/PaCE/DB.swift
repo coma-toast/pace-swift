@@ -19,7 +19,7 @@ enum APIPath: String {
 }
 
 extension DB {
-    static func request(_ path: APIPath) -> AnyPublisher<ContactResponse, Error> {
+    static func request(_ path: APIPath) -> AnyPublisher<Contacts, Error> {
         guard let components = URLComponents(url: baseUrl.appendingPathComponent(path.rawValue), resolvingAgainstBaseURL: true)
             else { fatalError("Couldn't create URLComponents") }
 //        components.queryItems = [URLQueryItem(name: "api_key", value: "your_api_key_here")]

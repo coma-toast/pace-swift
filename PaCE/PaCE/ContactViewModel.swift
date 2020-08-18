@@ -11,10 +11,12 @@ import Combine
 
 class ContactViewModel: ObservableObject {
 
-    @Published var contacts: [Contacts] = []
+    @Published var contacts: [Contact]
     var cancellationToken: AnyCancellable?
     
     init() {
+        
+        self.contacts = [Contact()]
         getContacts()
     }
     
@@ -28,7 +30,7 @@ class ContactViewModel: ObservableObject {
                   
                   receiveValue: {
                     print($0)
-                    self.contacts = $0.contact
+                    self.contacts = $0.contacts
             }
         )
     }
