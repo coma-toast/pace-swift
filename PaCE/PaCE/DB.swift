@@ -19,16 +19,20 @@ enum APIPath: String {
 }
 
 extension DB {
-    static func request(_ path: APIPath) -> AnyPublisher<Contacts, Error> {
-        guard let components = URLComponents(url: baseUrl.appendingPathComponent(path.rawValue), resolvingAgainstBaseURL: true)
-            else { fatalError("Couldn't create URLComponents") }
-//        components.queryItems = [URLQueryItem(name: "api_key", value: "your_api_key_here")]
-        
-        let request = URLRequest(url: components.url!)
-        
-        return apiClient.run(request) // 5
-            .map(\.value) // 6
-            .eraseToAnyPublisher() //
-    }
+//    static func request(_ path: String) -> AnyPublisher<Array<Any>, Error> {
+//        guard let components = URLComponents(url: baseUrl.appendingPathComponent(path), resolvingAgainstBaseURL: true)
+//            else { fatalError("Couldn't create URLComponents") }
+////        components.queryItems = [URLQueryItem(name: "api_key", value: "your_api_key_here")]
+//        
+////        let request = URLRequest(url: components.url!)
+//        
+//        
+////        return apiClient.run(request) // 5
+////            .map(\.value) // 6
+////            .eraseToAnyPublisher() //
+////        let url = String(baseUrl + path)
+//            let url = "\(baseUrl)/contacts"
+//        return API.call(url)
+//    }
     
 }

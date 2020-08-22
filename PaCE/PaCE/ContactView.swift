@@ -25,7 +25,7 @@ struct ContactView: View {
                         Text(contact.company)
                             .font(.subheadline)
                     }
-                }
+                }.padding().border(Color.gray, width: 1).frame(maxWidth: .infinity).shadow(radius: 0.5)
             }
 //        }
     }

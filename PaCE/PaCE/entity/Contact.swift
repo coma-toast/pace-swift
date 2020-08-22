@@ -13,21 +13,21 @@ struct Contacts: Codable {
 }
 
 struct Contact: Codable, Identifiable {
-    let id: String
-    let created: String
-    let firstName: String
-    let lastName: String
-    let company: String
-    let email: String
-    let phone: String
-    let timezone: String
-    let instance: String
+    var id: String = ""
+    var created: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    var company: String = ""
+    var email: String = ""
+    var phone: String = ""
+    var timezone: String = ""
+    var instance: String = ""
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case created = "created"
-        case firstName = "firstName"
-        case lastName = "lastName"
+        case firstName = "firstname"
+        case lastName = "lastname"
         case company = "company"
         case email = "email"
         case phone = "phone"

@@ -11,28 +11,45 @@ import Combine
 
 class ContactViewModel: ObservableObject {
 
-    @Published var contacts: [Contact]
+    @Published var contacts: [Contact] = []
     var cancellationToken: AnyCancellable?
     
     init() {
-        
-        self.contacts = [Contact()]
+//        self.contacts =
+        // Thread
+//        DispatchQueue.global(qos: .userInteractive).async {
+//
+////        self.contacts = try [Contact(from: <#Decoder#>)]
         getContacts()
+//            DispatchQueue.main.async {
+////                Reload data
+//            }
+//        }
     }
     
     func getContacts() {
-        cancellationToken = DB.request(.allContacts)
-            .mapError({ (error) -> Error in
-                print(error)
-                return error
-            })
-            .sink(receiveCompletion: { _ in },
-                  
-                  receiveValue: {
-                    print($0)
-                    self.contacts = $0.contacts
+        API().call(endpoint: "https://pace-api.jasondale.me/api/contact", completion: {data  in
+            do {
+                self.contacts = try JSONDecoder().decode([Contact].self, from: data!)
+                
             }
-        )
+            catch {
+                print("Error getting contacts: \(error)")
+            }
+        })
+        
+//        cancellationToken = DB.request(.allContacts)
+//            .mapError({ (error) -> Error in
+//                print(error)
+//                return error
+//            })
+//            .sink(receiveCompletion: { _ in },
+//
+//                  receiveValue: {
+//                    print($0)
+//                    self.contacts = $0.contacts
+//            }
+//        )
+//    }
     }
 }
-

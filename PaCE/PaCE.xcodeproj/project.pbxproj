@@ -22,6 +22,8 @@
 		AC464E3424E4C25900A266A0 /* PaCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3324E4C25900A266A0 /* PaCETests.swift */; };
 		AC464E3F24E4C25900A266A0 /* PaCEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */; };
 		AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E4C24E5D21A00A266A0 /* PaceImage.swift */; };
+		AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55DF24EF0878003A420D /* APIClient2.swift */; };
+		AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55E124F1A4EB003A420D /* ContactDetail.swift */; };
 		ACF7858924E614F500B4F750 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF7858824E614F500B4F750 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaCEUITests.swift; sourceTree = "<group>"; };
 		AC464E4024E4C25900A266A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC464E4C24E5D21A00A266A0 /* PaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaceImage.swift; sourceTree = "<group>"; };
+		AC9D55DF24EF0878003A420D /* APIClient2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
+		AC9D55E124F1A4EB003A420D /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
 		ACF7858824E614F500B4F750 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,7 +141,9 @@
 				AC30FCC024E72F8D00488A4D /* DB.swift */,
 				AC30FCB524E7277100488A4D /* ContactView.swift */,
 				AC30FCBA24E72B8800488A4D /* ContactResponse.swift */,
+				AC9D55E124F1A4EB003A420D /* ContactDetail.swift */,
 				AC30FCBC24E72D4B00488A4D /* APIClient.swift */,
+				AC9D55DF24EF0878003A420D /* APIClient2.swift */,
 			);
 			path = PaCE;
 			sourceTree = "<group>";
@@ -301,7 +307,9 @@
 			files = (
 				AC464E1D24E4C25700A266A0 /* AppDelegate.swift in Sources */,
 				AC30FCC124E72F8D00488A4D /* DB.swift in Sources */,
+				AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */,
 				AC30FCB624E7277100488A4D /* ContactView.swift in Sources */,
+				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
 				AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */,
 				AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */,
