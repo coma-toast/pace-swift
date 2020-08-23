@@ -10,21 +10,11 @@ import Foundation
 import Combine
 
 class ContactViewModel: ObservableObject {
-
     @Published var contacts: [Contact] = []
-    var cancellationToken: AnyCancellable?
+//    var cancellationToken: AnyCancellable?
     
     init() {
-//        self.contacts =
-        // Thread
-//        DispatchQueue.global(qos: .userInteractive).async {
-//
-////        self.contacts = try [Contact(from: <#Decoder#>)]
         getContacts()
-//            DispatchQueue.main.async {
-////                Reload data
-//            }
-//        }
     }
     
     func getContacts() {
@@ -37,19 +27,5 @@ class ContactViewModel: ObservableObject {
                 print("Error getting contacts: \(error)")
             }
         })
-        
-//        cancellationToken = DB.request(.allContacts)
-//            .mapError({ (error) -> Error in
-//                print(error)
-//                return error
-//            })
-//            .sink(receiveCompletion: { _ in },
-//
-//                  receiveValue: {
-//                    print($0)
-//                    self.contacts = $0.contacts
-//            }
-//        )
-//    }
     }
 }
