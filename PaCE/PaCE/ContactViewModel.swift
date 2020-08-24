@@ -11,7 +11,6 @@ import Combine
 
 class ContactViewModel: ObservableObject {
     @Published var contacts: [Contact] = []
-//    var cancellationToken: AnyCancellable?
     
     init() {
         getContacts()

@@ -25,9 +25,9 @@ struct ContactDetail: View {
     }
 }
 
-struct ContactDetail_Previews: PreviewProvider {
-    let contact = Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")
-    static var previews: some View {
-        ContactDetail(contact: contact)
-    }
-}
+//struct ContactDetail_Previews: PreviewProvider {
+//    let contact = Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")
+//    static var previews: some View {
+//        ContactDetail(contact: contact)
+//    }
+//}

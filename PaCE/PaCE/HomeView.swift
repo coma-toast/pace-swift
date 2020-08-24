@@ -11,38 +11,40 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationView {
-        VStack {
-            HStack {
-                NavigationLink(destination: ContactView()) {
-                    
-                    Image("contact").resizable().frame(width: 40, height: 40, alignment: .leading)
-                    Spacer()
-                    Text("Contacts").font(.title)
+            VStack {
+                HStack {
+                    NavigationLink(destination: ContactView()) {
+                        
+                        Image("contact").resizable().frame(width: 40, height: 40, alignment: .leading)
+                        Spacer()
+                        Text("Contacts").font(.title)
                     }.padding().border(Color.gray, width: 1)
-
-            }
-            HStack {
-                Image("notepad").resizable().frame(width: 40, height: 40, alignment: .leading)
-                Spacer()
-                Text("Projects").font(.title)
-            }.padding().border(Color.gray, width: 1)
-            HStack {
-                Image("ruler").resizable().frame(width: 40, height: 40, alignment: .leading)
-                Spacer()
-                Text("Inspections").font(.title)
-            }.padding().border(Color.gray, width: 1)
-            HStack {
-                Image("steel").resizable().frame(width: 40, height: 40, alignment: .leading)
-                Spacer()
-                Text("Inventory").font(.title)
-            }.padding().border(Color.gray, width: 1)
-            HStack {
-                Image("gear").resizable().frame(width: 40, height: 40, alignment: .leading)
-                Spacer()
-                Text("Settings").font(.title)
-            }.padding().border(Color.gray, width: 1)
-        }.padding(0)
-    }
+                    
+                }
+                HStack {
+                    NavigationLink(destination: ProjectView()) {
+                        Image("notepad").resizable().frame(width: 40, height: 40, alignment: .leading)
+                        Spacer()
+                        Text("Projects").font(.title)
+                    }.padding().border(Color.gray, width: 1)
+                }
+                HStack {
+                    Image("ruler").resizable().frame(width: 40, height: 40, alignment: .leading)
+                    Spacer()
+                    Text("Inspections").font(.title)
+                }.padding().border(Color.gray, width: 1)
+                HStack {
+                    Image("steel").resizable().frame(width: 40, height: 40, alignment: .leading)
+                    Spacer()
+                    Text("Inventory").font(.title)
+                }.padding().border(Color.gray, width: 1)
+                HStack {
+                    Image("gear").resizable().frame(width: 40, height: 40, alignment: .leading)
+                    Spacer()
+                    Text("Settings").font(.title)
+                }.padding().border(Color.gray, width: 1)
+            }.padding(0)
+        }
     }
     
 }
