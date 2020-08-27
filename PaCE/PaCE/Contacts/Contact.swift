@@ -21,6 +21,7 @@ struct Contact: Codable, Identifiable {
     var email: String = ""
     var phone: String = ""
     var timezone: String = ""
+//    var isFavorite: Bool = false
     var instance: String = ""
     
     enum CodingKeys: String, CodingKey {
@@ -32,6 +33,7 @@ struct Contact: Codable, Identifiable {
         case email = "email"
         case phone = "phone"
         case timezone = "timezone"
+//        case isFavorite = "isfavorite"
         case instance = "instance"
     }
 }
