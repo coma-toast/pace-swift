@@ -7,82 +7,126 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContactDetail: View {
-    var contact: Contact
-    //    var body: some View {
-    //        ZStack{
-    //            RoundedRectangle(cornerRadius: 25, style: .continuous)
-    //                .fill(Color.red)
-    //            VStack{
-    //                ContactView.Icon(contact: contact)
-    //                Divider()
-    //                VStack(alignment: .leading) {
-    //                    // Grid items
-    //                    HStack{
-    //                        Text("Name: ").bold()
-    //
-    //                    ContactView.FullName(contact: contact)
-    //                    }
-    //                    HStack {
-    //                        Text("Company: ").bold()
-    //                    Text(contact.company).font(.subheadline)
-    //                    }
-    //                    Text(contact.email)
-    //                    Text(contact.phone)
-    //                    Text(contact.timezone)
-    //
-    //                }
-    //            }
-    //        }
-    //    }
-    var body: some View {
-        VStack {
-            Spacer()
-            ContactView.Icon(contact: contact)                       .shadow(radius: 10)
-            
-            HStack {
-                Text("\(contact.firstName) \(contact.lastName)")
-                    .font(.largeTitle)
-                
-//
-//                Button(action: { contact.isFavorite.toggle() }) {
-//                    if contact.isFavorite {
-//                        Image(systemName: "star.fill")
-//                            .font(.headline)
-//                            .foregroundColor(.yellow)
-//                    } else {
-//                        Image(systemName: "star")
-//                            .font(.headline)
-//                            .foregroundColor(.gray)
-//                    }
-//                }
-            }
-            Divider()
-            
-            HStack {
-                Text("Phone").frame(width: 100, alignment: .trailing).font(Font.body.bold())
-                Text(contact.phone)
-                Spacer()
-            }.padding(.bottom, 5).padding(.leading, 100)
-            
-            HStack {
-                Text("Email").frame(width: 100, alignment: .trailing).font(Font.body.bold())
-                Text(contact.email).multilineTextAlignment(.leading)
-                Spacer()
-            }.padding(.bottom, 5).padding(.leading, 100)
-            
-            HStack {
-                Text("Company").frame(width: 100, alignment: .trailing).font(Font.body.bold())
-                Text(contact.company)
-                Spacer()
-            }.padding(.bottom, 5).padding(.leading, 100)
-            
-            Spacer()
-        }.padding(40)
+    @Binding var contact: Contact
+    var labels = [
+        "id",
+        "created",
+        "firstname",
+        "lastname",
+        "company",
+        "email",
+        "phone",
+        "timezone",
+        "isfavorite",
+        "instance",
+    ]
+    var arrayData: [String] = []
+    init(contact: Contact) {
+        let contact = contact
+        self.arrayData = []
+        self.labels = []
+        self.arrayData = reflectProperties(data: contact)
     }
     
+    
+    var body: some View {
+        
+        //        let arrayData: [String]
+        //        Mirror.reflectProperties(of: contact, using: arrayData:(T)-> Void)
+        VStack {
+            Text("test")
+            DetailView(labels: labels, data: arrayData)
+        }
+    }
+    func reflectProperties(data: Contact) -> [String] {
+        let mirror = Mirror(reflecting: data)
+        let returnArray: [String]
+        mirror.map
+        
+//        for child in mirror.children {
+//            returnArray.append(child.value as! String)
+//
+//        }
+    }
 }
+
+//            DetailView
+//            Spacer()
+//            ContactView.Icon(contact: contact)                       .shadow(radius: 10)
+//
+//            HStack {
+//                Text("\(contact.firstName) \(contact.lastName)")
+//                    .font(.largeTitle)
+//
+////
+////                Button(action: { contact.isFavorite.toggle() }) {
+////                    if contact.isFavorite {
+////                        Image(systemName: "star.fill")
+////                            .font(.headline)
+////                            .foregroundColor(.yellow)
+////                    } else {
+////                        Image(systemName: "star")
+////                            .font(.headline)
+////                            .foregroundColor(.gray)
+////                    }
+////                }
+//            }
+//            Divider()
+//
+//            HStack {
+//                Text("Phone").frame(width: 100, alignment: .trailing).font(Font.body.bold())
+//                Text(contact.phone)
+//                Spacer()
+//            }.padding(.bottom, 5).padding(.leading, 100)
+//
+//            HStack {
+//                Text("Email").frame(width: 100, alignment: .trailing).font(Font.body.bold())
+//                Text(contact.email).multilineTextAlignment(.leading)
+//                Spacer()
+//            }.padding(.bottom, 5).padding(.leading, 100)
+//
+//            HStack {
+//                Text("Company").frame(width: 100, alignment: .trailing).font(Font.body.bold())
+//                Text(contact.company)
+//                Spacer()
+//            }.padding(.bottom, 5).padding(.leading, 100)
+//
+//            Spacer()
+//        }.padding(40)
+
+
+
+
+
+
+
+
+//
+//extension Mirror {
+//    static func reflectProperties<T>(
+//        of target: Any,
+//        matchingType type: T.Type = T.self,
+//        using closure: (T) -> Void
+//    ) {
+//        let mirror = Mirror(reflecting: target)
+//
+//        for child in mirror.children {
+//            (child.value as? T).map(closure)
+//        }
+//    }
+//}
+
+// TODO: automatically generate label array
+//func objectToArray(data: ) -> [String] {
+//    var returnArray: [String] = []
+//    ForEach(0 ... data.count) {
+//        returnArray.append($0)
+//    }
+//    return returnArray
+//}
 
 struct ContactDetail_Previews: PreviewProvider {
     //    let contacts = ContactViewModel()
@@ -92,3 +136,4 @@ struct ContactDetail_Previews: PreviewProvider {
         ContactDetail(contact: contact)
     }
 }
+

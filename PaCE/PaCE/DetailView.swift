@@ -13,16 +13,23 @@ struct DetailView: View {
     let data: [String]
     var body: some View {
         VStack{
-            ForEach(labels, id: \.self) {label in
+            ForEach(labels.indices, id: \.self) {i in
             HStack {
-                Text(label).frame(width: 100, alignment: .trailing).font(Font.body.bold())
-//                Text(data[id])
+                Text(self.labels[i]).frame(width: 100, alignment: .trailing).font(Font.body.bold())
+                Text(self.data[i])
                 Spacer()
             }.padding(.bottom, 5).padding(.leading, 100)
             }
         }
     }
 }
+
+//func parseObject(object: <Any>) -> [String] {
+//    var returnArray: [String] = []
+//    ForEach(object, id: \.self) { item in
+//        returnArray.append(item)
+//    
+//}
 
 struct DetailView_Previews: PreviewProvider {
     static var labels = ["name", "phone"]

@@ -17,7 +17,7 @@ class ProjectViewModel: ObservableObject {
     }
     
     func getProjects() {
-        API().call(endpoint: "https://pace-api.jasondale.me/api/project", completion: {data  in
+        API().call(endpoint: "project", completion: {data  in
             do {
                 self.projects = try JSONDecoder().decode([Project].self, from: data!)
                 

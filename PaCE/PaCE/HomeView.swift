@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    init(
+    )
     var body: some View {
         NavigationView {
             VStack {
@@ -46,7 +48,6 @@ struct HomeView: View {
             }.padding(0)
         }
     }
-    
 }
 
 struct HomeView_Previews: PreviewProvider {
