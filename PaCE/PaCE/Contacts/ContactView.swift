@@ -10,6 +10,9 @@ import SwiftUI
 
 struct ContactView: View {
     @ObservedObject var viewModel = ContactViewModel()
+    init() {
+        viewModel.getAllContacts()
+    }
     
     var body: some View {
         ForEach(viewModel.contacts, id: \.id) { contact in
@@ -22,7 +25,7 @@ struct ContactView: View {
                     }
                     Spacer()
                 }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
-            } .buttonStyle(PlainButtonStyle())
+            }.buttonStyle(PlainButtonStyle())
         }
     }
 }

@@ -11,35 +11,33 @@ import Combine
 
 class ContactViewModel: ObservableObject {
     @Published private(set) var contacts = [Contact]()
-    @Published private var cancellable: Cancellable?
     
-    //    init() {
-    //        getContacts()
-    //    }
-    //
-    func getAllContacts() {
-        API().call(endpoint: "contact", method: "GET", completion:  {contacts in
-            self.contacts = contacts as! [Contact]
-            //            do {
-            //                self.contacts = try JSONDecoder().decode([Contact].self, from: data!)
-            //
-            //            }
-            //            catch {
-            //                print("Error getting contacts: \(error)")
-            //            }
-        })
+    func getAllContacts(){
+        let payloadData: [Contact] = [Contact]()
+        
+        API().call(endpoint: "contact", method: "GET", payload: payloadData) { result in
+            switch result {
+            case .success(let contacts):
+                print(contacts)
+                self.contacts = contacts
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
-    func updateContact(contact: Contact) -> Contact{
-        
-        API().call(endpoint: "contact", method: "POST", payload: contact, completion: {data in
-            
-            //            do {
-            //                return try JSONDecoder().decode(Contact.self, from: data!)
-            //            }
-            //            catch {
-            //                print("Error getting updated contact")
-            //            }
-        })
+    func updateContact(contact: Contact) {
+        API().call(endpoint: "contact", method: "POST", payload: contact) { result in
+            switch result {
+            case .success(let updatedContact):
+                if let row = self.contacts.firstIndex(where: {$0.id == updatedContact.id}) {
+                    self.contacts[row] = updatedContact
+                }
+                print("Contact \(updatedContact.firstName) \(updatedContact.lastName) updated.")
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
+

@@ -10,21 +10,19 @@ import Foundation
 import Combine
 
 class ProjectViewModel: ObservableObject {
-    @Published var projects: [Project] = []
+    @Published private(set) var projects = [Project]()
     
-    init() {
-        getProjects()
+    func getAllProjects() {
+        let payloadData = [Project]()
+        API().call(endpoint: "project", method: "GET", payload: payloadData)  { result in
+            switch result {
+            case .success(let projects):
+                print(projects)
+                self.projects = projects
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
-    func getProjects() {
-        API().call(endpoint: "project", completion: {data  in
-            do {
-                self.projects = try JSONDecoder().decode([Project].self, from: data!)
-                
-            }
-            catch {
-                print("Error getting projects: \(error)")
-            }
-        })
-    }
 }

@@ -9,8 +9,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    init(
-    )
     var body: some View {
         NavigationView {
             VStack {

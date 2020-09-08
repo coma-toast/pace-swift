@@ -15,21 +15,14 @@ struct DetailView: View {
         VStack{
             ForEach(labels.indices, id: \.self) {i in
             HStack {
-                Text(self.labels[i]).frame(width: 100, alignment: .trailing).font(Font.body.bold())
+                Text(String.titleCase(self.labels[i])).frame(width: 100, alignment: .trailing).font(Font.body.bold())
                 Text(self.data[i])
                 Spacer()
-            }.padding(.bottom, 5).padding(.leading, 100)
+            }.padding(.bottom, 5)
             }
         }
     }
 }
-
-//func parseObject(object: <Any>) -> [String] {
-//    var returnArray: [String] = []
-//    ForEach(object, id: \.self) { item in
-//        returnArray.append(item)
-//    
-//}
 
 struct DetailView_Previews: PreviewProvider {
     static var labels = ["name", "phone"]
@@ -38,3 +31,16 @@ struct DetailView_Previews: PreviewProvider {
         DetailView(labels: labels, data: data)
     }
 }
+
+extension String {
+    func titleCase() -> String {
+        return self
+            .replacingOccurrences(of: "([A-Z])",
+                                  with: " $1",
+                                  options: .regularExpression,
+                                  range: range(of: self))
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .capitalized
+    }
+}
+
