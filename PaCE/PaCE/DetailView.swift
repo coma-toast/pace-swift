@@ -15,7 +15,7 @@ struct DetailView: View {
         VStack{
             ForEach(labels.indices, id: \.self) {i in
             HStack {
-                Text(String.titleCase(self.labels[i])).frame(width: 100, alignment: .trailing).font(Font.body.bold())
+                Text(self.labels[i]).frame(width: 100, alignment: .trailing).font(Font.body.bold())
                 Text(self.data[i])
                 Spacer()
             }.padding(.bottom, 5)
@@ -32,15 +32,5 @@ struct DetailView_Previews: PreviewProvider {
     }
 }
 
-extension String {
-    func titleCase() -> String {
-        return self
-            .replacingOccurrences(of: "([A-Z])",
-                                  with: " $1",
-                                  options: .regularExpression,
-                                  range: range(of: self))
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .capitalized
-    }
-}
+
 

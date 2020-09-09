@@ -28,6 +28,8 @@
 		AC9D55E724F33EBB003A420D /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55E624F33EBB003A420D /* ProjectView.swift */; };
 		AC9D55E924F34005003A420D /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55E824F34005003A420D /* ProjectViewModel.swift */; };
 		AC9D55EB24F344F6003A420D /* ProjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55EA24F344F6003A420D /* ProjectDetail.swift */; };
+		AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */; };
+		AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EF33D250853DF00CFCDC9 /* EditView.swift */; };
 		ACC8AAA924F75CF200CC99A5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8AAA824F75CF200CC99A5 /* DetailView.swift */; };
 		ACF7858924E614F500B4F750 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF7858824E614F500B4F750 /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,8 @@
 		AC9D55E624F33EBB003A420D /* ProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
 		AC9D55E824F34005003A420D /* ProjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
 		AC9D55EA24F344F6003A420D /* ProjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetail.swift; sourceTree = "<group>"; };
+		AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEdit.swift; sourceTree = "<group>"; };
+		AC9EF33D250853DF00CFCDC9 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		ACC8AAA824F75CF200CC99A5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		ACF7858824E614F500B4F750 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +148,7 @@
 				AC30FCB924E728D200488A4D /* Project */,
 				AC464E1C24E4C25700A266A0 /* AppDelegate.swift */,
 				ACC8AAA824F75CF200CC99A5 /* DetailView.swift */,
+				AC9EF33D250853DF00CFCDC9 /* EditView.swift */,
 				AC464E1E24E4C25700A266A0 /* SceneDelegate.swift */,
 				AC464E2024E4C25700A266A0 /* ContentView.swift */,
 				AC464E4C24E5D21A00A266A0 /* PaceImage.swift */,
@@ -192,6 +197,7 @@
 				AC30FCBE24E72DDF00488A4D /* ContactViewModel.swift */,
 				AC30FCB524E7277100488A4D /* ContactView.swift */,
 				AC9D55E124F1A4EB003A420D /* ContactDetail.swift */,
+				AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */,
 				AC30FCBA24E72B8800488A4D /* ContactResponse.swift */,
 			);
 			path = Contacts;
@@ -334,8 +340,10 @@
 				AC30FCC124E72F8D00488A4D /* DB.swift in Sources */,
 				AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */,
 				AC30FCB624E7277100488A4D /* ContactView.swift in Sources */,
+				AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */,
 				AC9D55E924F34005003A420D /* ProjectViewModel.swift in Sources */,
 				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
+				AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */,
 				AC9D55E424F33C1F003A420D /* Project.swift in Sources */,
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
 				AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */,
@@ -512,6 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PaCE/Preview Content\"";
+				DEVELOPMENT_TEAM = 4G3BHQMD66;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PaCE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -531,6 +540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PaCE/Preview Content\"";
+				DEVELOPMENT_TEAM = 4G3BHQMD66;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = PaCE/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -24,6 +24,10 @@ struct ContactDetail: View {
     var body: some View {
         VStack {
             DetailView(labels: labels, data: data)
+            NavigationLink(destination: ContactEdit(contact: contact)) {
+                Text("Edit")
+            }
+            Spacer()
         }
     }
     mutating func reflectProperties(contact: Contact) {
@@ -32,13 +36,12 @@ struct ContactDetail: View {
         for child in mirror.children {
             
             if child.label != Optional("instance"), child.label != Optional("id") {
-                self.labels.append(child.label ?? "")
+                
+                self.labels.append(String.titleCase(child.label ?? "")())
                 self.data.append(child.value as! String)
             }
         }
     }
-    
-    
 }
 
 //        "id",

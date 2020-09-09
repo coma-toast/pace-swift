@@ -15,18 +15,22 @@ struct ContactView: View {
     }
     
     var body: some View {
-        ForEach(viewModel.contacts, id: \.id) { contact in
-            NavigationLink(destination: ContactDetail(contact: contact)) {
-                HStack{
-                    Icon(contact: contact)
-                    VStack(alignment: .leading) {
-                        FullName(contact: contact)
-                        Text(contact.company).font(.subheadline)
-                    }
-                    Spacer()
-                }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
-            }.buttonStyle(PlainButtonStyle())
+        VStack {
+            ForEach(viewModel.contacts, id: \.id) { contact in
+                NavigationLink(destination: ContactDetail(contact: contact)) {
+                    HStack{
+                        Icon(contact: contact)
+                        VStack(alignment: .leading) {
+                            FullName(contact: contact)
+                            Text(contact.company).font(.subheadline)
+                        }
+                        Spacer()
+                    }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+                }.buttonStyle(PlainButtonStyle())
+            }
+            Spacer()
         }
+        
     }
 }
 
@@ -89,9 +93,9 @@ extension ContactView {
 //        Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"),
 //        Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"),
 //    ]
-//    
-//    
+//
+//
 //    static var previews: some View {
-//        ContactView(viewModel:viewModel)
+//        ContactView()
 //    }
 //}

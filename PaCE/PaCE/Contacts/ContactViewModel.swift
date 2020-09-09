@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 class ContactViewModel: ObservableObject {
-    @Published private(set) var contacts = [Contact]()
+    @Published var contacts = [Contact]()
     
     func getAllContacts(){
         let payloadData: [Contact] = [Contact]()
