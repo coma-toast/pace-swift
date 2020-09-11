@@ -20,12 +20,9 @@ struct EditView: View {
                         TextField(self.labels[i], text: self.$data[i])
                     }
                 }
-                
-            }.navigationBarTitle("Edit Contact")
+            }.navigationBarTitle("Edit")
             Spacer()
-            
         }
-        
     }
 }
 

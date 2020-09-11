@@ -10,35 +10,61 @@ import SwiftUI
 import Combine
 
 struct ContactEdit: View {
-    let contact: Contact
-    var labels: [String] = [String]()
-    var data: [String] = [String]()
-    init(contact: Contact) {
-        self.contact = contact
-        self.data = []
-        self.labels = []
-        reflectProperties(contact: contact)
-    }
+    @State var contact: Contact
+    let viewModel = ContactViewModel()
+    //    var labels: [String] = [String]()
+    //    var data: [String] = [String]()
+    //    init(contact: Contact) {
+    //        self.contact = contact
+    //        self.data = []
+    //        self.labels = []
+    //        reflectProperties(contact: contact)
+    //    }
     
     
     var body: some View {
         VStack {
-            EditView(labels: labels, data: data)
+            //            EditView(labels: labels, data: data)
+            Form {
+                HStack {
+                    Text("First Name")
+                    TextField("First Name", text: $contact.firstName)
+                }
+                Spacer()
+                Button(action: {
+                    self.viewModel.updateContact(contact: self.contact)
+                    //                    self.sendUpdatedData(contact: self.contact)
+                }) {
+                    Text("Submit")
+                }
+            }.navigationBarTitle("Edit")
             Spacer()
-        }
-    }
-    mutating func reflectProperties(contact: Contact) {
-        let mirror = Mirror(reflecting: contact)
-        
-        for child in mirror.children {
             
-            if child.label != Optional("instance"), child.label != Optional("id"), child.label != Optional("created") {
-                
-                self.labels.append(String.titleCase(child.label ?? "")())
-                self.data.append(child.value as! String)
-            }
         }
     }
+    //    func sendUpdatedData(contact: Contact) {
+    //        API().call(endpoint: "contact", method: "POST", payload: contact) { result in
+    //            switch result {
+    //            case .success(let contact):
+    //                print(contact)
+    //                self.contact = contact
+    //            case .failure(let error):
+    //                print(error)
+    //            }
+    //        }
+    //    }
+    //    mutating func reflectProperties(contact: Contact) {
+    //        let mirror = Mirror(reflecting: contact)
+    //
+    //        for child in mirror.children {
+    //
+    //            if child.label != Optional("instance"), child.label != Optional("id"), child.label != Optional("created") {
+    //
+    //                self.labels.append(String.titleCase(child.label ?? "")())
+    //                self.data.append(child.value as! String)
+    //            }
+    //        }
+    //    }
 }
 
 
