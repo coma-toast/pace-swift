@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
 
-struct Contacts: Codable {
-    let contacts: [Contact]
+class Contacts: ObservableObject {
+    @Published var contacts: [Contact] = [Contact()]
 }
 
 struct Contact: Codable, Identifiable {

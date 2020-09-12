@@ -9,20 +9,21 @@
 import SwiftUI
 
 struct ContactView: View {
-    @ObservedObject var viewModel = ContactViewModel()
+    @State var viewModel = ContactViewModel()
     init() {
         viewModel.getAllContacts()
     }
     
     var body: some View {
         VStack {
-            ForEach(viewModel.contacts, id: \.id) { contact in
-                NavigationLink(destination: ContactDetail(contact: contact)) {
+            ForEach(viewModel.contacts.indices) { idx in
+//                ContactViewItem(contact: self.$viewModel.contacts[idx])
+                NavigationLink(destination: ContactDetail(contact: self.$viewModel.contacts[idx])) {
                     HStack{
-                        Icon(contact: contact)
+                        Icon(contact: self.$viewModel.contacts[idx])
                         VStack(alignment: .leading) {
-                            FullName(contact: contact)
-                            Text(contact.company).font(.subheadline)
+                            FullName(contact: self.$viewModel.contacts[idx])
+                            Company(contact: self.$viewModel.contacts[idx]).font(.subheadline)
                         }
                         Spacer()
                     }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
@@ -33,6 +34,22 @@ struct ContactView: View {
         
     }
 }
+
+//struct ContactViewItem: View {
+//    @Binding var contact: Contact
+//    var body: some View {
+//        NavigationLink(destination: ContactDetail(contact: $contact)) {
+//            HStack{
+//                ContactView.Icon(contact: contact)
+//                VStack(alignment: .leading) {
+//                    ContactView.FullName(contact: contact)
+//                    Text(contact.company).font(.subheadline)
+//                }
+//                Spacer()
+//            }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+//        }.buttonStyle(PlainButtonStyle())
+//    }
+//}
 
 //struct TestContactView: View {
 //    static var viewModel:[Contact] = [
@@ -59,7 +76,7 @@ struct ContactView: View {
 
 extension ContactView {
     struct Icon: View {
-        let contact: Contact
+        @Binding var contact: Contact
         var body: some View {
             ZStack{
                 Rectangle()
@@ -77,11 +94,19 @@ extension ContactView {
         }
     }
     struct FullName: View {
-        let contact: Contact
+        @Binding var  contact: Contact
         var body: some View {
             HStack {
                 Text(contact.firstName + " " + contact.lastName)
                     .font(.headline)
+            }
+        }
+    }
+    struct Company: View {
+        @Binding var contact: Contact
+        var body: some View {
+            HStack {
+                Text(contact.company)
             }
         }
     }

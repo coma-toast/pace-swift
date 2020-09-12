@@ -10,20 +10,20 @@ import SwiftUI
 import Combine
 
 struct ContactDetail: View {
-    let contact: Contact
-    var labels: [String] = [String]()
-    var data: [String] = [String]()
-    init(contact: Contact) {
-        self.contact = contact
-        self.data = []
-        self.labels = []
-        reflectProperties(contact: contact)
-    }
+    @Binding var contact: Contact
+    @State var labels: [String] = [String]()
+    @State var data: [String] = [String]()
+//    init(contact: Contact) {
+////        self.contact = contact
+//        self.data = []
+//        self.labels = []
+//        reflectProperties(contact: contact)
+//    }
     
     
     var body: some View {
         VStack {
-            DetailView(labels: labels, data: data)
+            DetailView(labels: $labels, data: $data)
             NavigationLink(destination: ContactEdit(contact: contact)) {
                 Text("Edit")
             }

@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct DetailView: View {
-    let labels: [String]
-    let data: [String]
+    @Binding var labels: [String]
+    @Binding var data: [String]
     var body: some View {
         VStack{
             ForEach(labels.indices, id: \.self) {i in
@@ -24,13 +24,13 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var labels = ["name", "phone"]
-    static var data = ["myself smith", "1234567890"]
-    static var previews: some View {
-        DetailView(labels: labels, data: data)
-    }
-}
+//struct DetailView_Previews: PreviewProvider {
+//    static var labels = ["name", "phone"]
+//    static var data = ["myself smith", "1234567890"]
+//    static var previews: some View {
+////        DetailView(labels: Binding<labels>, data: data)
+//    }
+//}
 
 
 
