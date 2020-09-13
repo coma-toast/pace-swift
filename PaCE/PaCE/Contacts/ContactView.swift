@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContactView: View {
     @EnvironmentObject var store: ContactStore
+    
     var body: some View {
         NavigationView {
             List {

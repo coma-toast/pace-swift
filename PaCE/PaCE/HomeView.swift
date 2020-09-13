@@ -10,7 +10,10 @@ import Foundation
 import SwiftUI
 // TODO: state, archive state https://github.com/Dimillian/MovieSwiftUI/blob/master/MovieSwift/MovieSwift/views/components/home/HomeView.swift
 
+// TODO: cached data locally - what do we do when API data is different from local cached data?
+
 struct HomeView: View {
+    
     var body: some View {
         NavigationView {
             VStack {
