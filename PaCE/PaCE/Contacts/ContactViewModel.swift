@@ -12,6 +12,10 @@ import Combine
 class ContactViewModel: ObservableObject {
     @Published var contacts = [Contact]()
     
+    init() {
+//        $contacts.sink(receiveValue: )
+    }
+    
     func getAllContacts(){
         let payloadData: [Contact] = [Contact]()
         

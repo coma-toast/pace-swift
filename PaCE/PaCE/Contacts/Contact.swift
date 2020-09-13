@@ -10,8 +10,25 @@ import Foundation
 import SwiftUI
 import Combine
 
-class Contacts: ObservableObject {
-    @Published var contacts: [Contact] = [Contact()]
+final class ContactStore: ObservableObject {
+    @Published var contacts: [Contact] = []
+    init() {
+        contacts.append(Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"))
+        contacts.append(Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"))
+
+    }
+    
+    func orderByLastname() {
+        contacts.sort { $0.lastName < $1.lastName }
+    }
+    
+    func orderByFirstname() {
+        contacts.sort { $0.firstName < $1.firstName }
+    }
+//    func removeCompleted() {
+//        todos.removeAll { $0.isDone }
+//    }
+
 }
 
 struct Contact: Codable, Identifiable {
