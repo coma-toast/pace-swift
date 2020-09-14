@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct ContactView: View {
-    @EnvironmentObject var store: ContactStore
+    @EnvironmentObject var contactDatastore: ContactStore
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(store.contacts.indexed(), id: \.1.id) { index, _ in
-                    ContactViewItem(contact: self.$store.contacts[index])
+                ForEach(contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in
+                    ContactViewItem(contact: self.$contactDatastore.contacts[index])
                 }
             }
             Spacer()

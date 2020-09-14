@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 
 struct ContactEdit: View {
-    @State var contact: Contact
-    let viewModel = ContactViewModel()
+    let contact: Binding<Contact>
+    @EnvironmentObject var contactDatastore: ContactStore
     //    var labels: [String] = [String]()
     //    var data: [String] = [String]()
     //    init(contact: Contact) {
@@ -28,11 +28,11 @@ struct ContactEdit: View {
             Form {
                 HStack {
                     Text("First Name")
-                    TextField("First Name", text: $contact.firstName)
+                    TextField("First Name", text: contact.firstName)
                 }
                 Spacer()
                 Button(action: {
-                    self.viewModel.updateContact(contact: self.contact)
+                    self.contactDatastore.updateContact(contact: self.contact.wrappedValue)
                     //                    self.sendUpdatedData(contact: self.contact)
                 }) {
                     Text("Submit")
@@ -68,9 +68,9 @@ struct ContactEdit: View {
 }
 
 
-struct ContactEdit_Previews: PreviewProvider {
-    static var contact = Contact(id: "1234", created: "june 1st 2020", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")
-    static var previews: some View {
-        ContactEdit(contact: contact)
-    }
-}
+//struct ContactEdit_Previews: PreviewProvider {
+//    static var contact: Binding<Contact> = Binding<Contact>(id: "1234", created: "june 1st 2020", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")
+//    static var previews: some View {
+//        ContactEdit(contact: contact)
+//    }
+//}
