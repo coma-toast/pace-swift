@@ -10,8 +10,13 @@ import SwiftUI
 import Combine
 
 struct ContactEdit: View {
-    let contact: Binding<Contact>
+    var contact: Binding<Contact>
+    var tempContact: Binding<Contact>
     @EnvironmentObject var contactDatastore: ContactStore
+    init(contact: Binding<Contact>) {
+        self.contact = contact
+        self.tempContact = self.contact
+    }
     //    var labels: [String] = [String]()
     //    var data: [String] = [String]()
     //    init(contact: Contact) {
@@ -28,11 +33,12 @@ struct ContactEdit: View {
             Form {
                 HStack {
                     Text("First Name")
-                    TextField("First Name", text: contact.firstName)
+                    TextField("First Name", text: tempContact.firstName)
                 }
                 Spacer()
                 Button(action: {
-                    self.contactDatastore.updateContact(contact: self.contact.wrappedValue)
+                    self.contactDatastore.updateContact(contact: self.tempContact.wrappedValue)
+                    
                     //                    self.sendUpdatedData(contact: self.contact)
                 }) {
                     Text("Submit")

@@ -15,7 +15,6 @@ final class ContactStore: ObservableObject {
     init() {
         contacts.append(Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"))
         contacts.append(Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"))
-
     }
     
     func orderByLastname() {

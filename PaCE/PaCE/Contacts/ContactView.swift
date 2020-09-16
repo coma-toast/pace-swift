@@ -12,7 +12,7 @@ struct ContactView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     
     var body: some View {
-        NavigationView {
+        VStack {
             List {
                 ForEach(contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in
                     ContactViewItem(contact: self.$contactDatastore.contacts[index])
@@ -20,6 +20,23 @@ struct ContactView: View {
             }
             Spacer()
         }.navigationBarTitle("Contacts")
+    }
+}
+
+struct ContactViewItem: View {
+    let contact: Binding<Contact>
+    
+    var body: some View {
+        NavigationLink(destination: ContactDetail(contact: contact)) {
+            HStack{
+                ContactView.Icon(contact: contact)
+                VStack(alignment: .leading) {
+                    ContactView.FullName(contact: contact)
+                    ContactView.Company(contact: contact).font(.subheadline)
+                }
+                Spacer()
+            }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+        }.buttonStyle(PlainButtonStyle())
     }
 }
 //    @State var viewModel = ContactViewModel()
@@ -60,22 +77,7 @@ struct ContactView: View {
 //    }
 //}
 
-struct ContactViewItem: View {
-    let contact: Binding<Contact>
-    
-    var body: some View {
-        NavigationLink(destination: ContactDetail(contact: contact)) {
-            HStack{
-                ContactView.Icon(contact: contact)
-                VStack(alignment: .leading) {
-                    ContactView.FullName(contact: contact)
-                    ContactView.Company(contact: contact).font(.subheadline)
-                }
-                Spacer()
-            }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
-        }.buttonStyle(PlainButtonStyle())
-    }
-}
+
 
 //struct TestContactView: View {
 //    static var viewModel:[Contact] = [

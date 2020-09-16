@@ -12,8 +12,8 @@ import Combine
 struct ContactDetail: View {
 //    @Binding var contact: Contact
     let contact: Binding<Contact>
-    @State var labels: [String] = [String]()
-    @State var data: [String] = [String]()
+    @State var labels: [String] = []
+    @State var data: [String] = []
     init(contact: Binding<Contact>) {
         self.contact = contact
 //        self.data = []
@@ -24,7 +24,7 @@ struct ContactDetail: View {
     
     var body: some View {
         VStack {
-//            Text(self.$contact.firstName)
+            ContactView.FullName(contact: contact)
             DetailView(labels: $labels, data: $data)
             NavigationLink(destination: ContactEdit(contact: contact)) {
                 Text("Edit")
