@@ -10,13 +10,13 @@ import SwiftUI
 import Combine
 
 struct ContactDetail: View {
-//    @Binding var contact: Contact
+    //    @Binding var contact: Contact
     let contact: Binding<Contact>
     @State var labels: [String] = []
     @State var data: [String] = []
     init(contact: Binding<Contact>) {
         self.contact = contact
-//        self.data = []
+        //        self.data = []
         labels = ["init"]
         reflectProperties(contact: contact)
     }
@@ -25,6 +25,9 @@ struct ContactDetail: View {
     var body: some View {
         VStack {
             ContactView.FullName(contact: contact)
+            ForEach(labels.indices, id: \.self) { i in
+                Text(self.labels[i])
+            }
             DetailView(labels: $labels, data: $data)
             NavigationLink(destination: ContactEdit(contact: contact)) {
                 Text("Edit")
@@ -61,13 +64,17 @@ struct ContactDetail: View {
 //        "instance",
 //    ]
 
-
-//struct ContactDetail_Previews: PreviewProvider {
-//    //    let contacts = ContactViewModel()
-//    static var contact = Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")
 //
-//    static var previews: some View {
-////        ContactDetail(Binding: contact)
-//    }
-//}
-
+struct ContactDetail_Previews: PreviewProvider {
+    static var previews: some View {
+        PreviewWrapper()
+    }
+    
+    struct PreviewWrapper: View {
+        @State(initialValue:  Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")) var contact: Contact
+        
+        var body: some View {
+            ContactDetail(contact: $contact)
+        }
+    }
+}
