@@ -13,9 +13,7 @@ struct ContactView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            
             ZStack(alignment: .center) {
-                
                 VStack {
                     List {
                         ForEach(self.contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in
@@ -25,14 +23,7 @@ struct ContactView: View {
                     Spacer()
                 }.blur(radius: self.contactDatastore.isLoading ? 3 : 0)
                 if self.contactDatastore.isLoading {
-                    VStack {
-                        Text("Loading...").disabled(self.contactDatastore.isLoading)
-                    }.frame(width: geometry.size.width / 2,
-                            height: geometry.size.height / 5)
-                        .background(Color.secondary.colorInvert())
-                        .foregroundColor(Color.primary)
-                        .cornerRadius(20)
-                        .opacity(self.contactDatastore.isLoading ? 1 : 0)
+                    LoadingView()
                 }
             }.navigationBarTitle("Contacts")
         }
@@ -90,6 +81,22 @@ extension ContactView {
             HStack {
                 Text(contact.company)
             }
+        }
+    }
+}
+
+struct LoadingView: View {
+    @EnvironmentObject var contactDatastore: ContactStore
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                Text("Loading...").disabled(self.contactDatastore.isLoading)
+            }.frame(width: geometry.size.width / 2,
+                    height: geometry.size.height / 5)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+                .opacity(self.contactDatastore.isLoading ? 1 : 0)
         }
     }
 }

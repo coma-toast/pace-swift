@@ -11,12 +11,12 @@ import Combine
 
 struct ContactEdit: View {
     @State var contact: Contact
-//    var contact: Binding<Contact>
-//    var tempContact: Binding<Contact>
+    //    var contact: Binding<Contact>
+    //    var tempContact: Binding<Contact>
     @EnvironmentObject var contactDatastore: ContactStore
-//    init(contact: Contact) {
-//        self.contact = contact
-//    }
+    //    init(contact: Contact) {
+    //        self.contact = contact
+    //    }
     //    var labels: [String] = [String]()
     //    var data: [String] = [String]()
     //    init(contact: Contact) {
@@ -28,67 +28,45 @@ struct ContactEdit: View {
     
     
     var body: some View {
-        VStack {
-            //            EditView(labels: labels, data: data)
-            Form {
-                HStack {
-                    Text("First Name")
-                    TextField("First Name", text: $contact.firstName)
+        ZStack {
+            VStack {
+                // TODO: EditView(labels: labels, data: data)
+                Form {
+                    HStack {
+                        Text("First Name").bold()
+                        TextField("First Name", text: $contact.firstName)
+                    }
+                    HStack {
+                        Text("Last Name").bold()
+                        TextField("Last Name", text: $contact.lastName)
+                    }
+                    HStack {
+                        Text("Company").bold()
+                        TextField("Company", text: $contact.company)
+                    }
+                    HStack {
+                        Text("Email").bold()
+                        TextField("Email", text: $contact.email)
+                    }
+                    HStack {
+                        Text("Phone").bold()
+                        TextField("Phone", text: $contact.phone)
+                    }
+                    Button(action: {
+                        self.contactDatastore.updateContact(contact: self.contact)
+                    }) {
+                        Text("Submit").bold().fontWeight(.heavy)
+                    }
                 }
-                HStack {
-                    Text("Last Name")
-                    TextField("Last Name", text: $contact.lastName)
-                }
-                HStack {
-                    Text("Company")
-                    TextField("Company", text: $contact.company)
-                }
-                HStack {
-                    Text("Email")
-                    TextField("Email", text: $contact.email)
-                }
-                HStack {
-                    Text("Phone")
-                    TextField("Phone", text: $contact.phone)
-                }                
                 Spacer()
-                Button(action: {
-                    self.contactDatastore.updateContact(contact: self.contact)
-                    
-                    //                    self.sendUpdatedData(contact: self.contact)
-                }) {
-                    Text("Submit")
-                }
-            }.navigationBarTitle("Edit")
-            Spacer()
-            
-        }
+            }
+            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
+            if self.contactDatastore.isLoading {
+                LoadingView()
+            }
+        }.navigationBarTitle("Edit")
     }
-    //    func sendUpdatedData(contact: Contact) {
-    //        API().call(endpoint: "contact", method: "POST", payload: contact) { result in
-    //            switch result {
-    //            case .success(let contact):
-    //                print(contact)
-    //                self.contact = contact
-    //            case .failure(let error):
-    //                print(error)
-    //            }
-    //        }
-    //    }
-    //    mutating func reflectProperties(contact: Contact) {
-    //        let mirror = Mirror(reflecting: contact)
-    //
-    //        for child in mirror.children {
-    //
-    //            if child.label != Optional("instance"), child.label != Optional("id"), child.label != Optional("created") {
-    //
-    //                self.labels.append(String.titleCase(child.label ?? "")())
-    //                self.data.append(child.value as! String)
-    //            }
-    //        }
-    //    }
 }
-
 
 //struct ContactEdit_Previews: PreviewProvider {
 //    static var contact: Binding<Contact> = Binding<Contact>(id: "1234", created: "june 1st 2020", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")

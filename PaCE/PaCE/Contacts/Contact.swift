@@ -45,6 +45,7 @@ final class ContactStore: ObservableObject {
     }
     
     func updateContact(contact: Contact) {
+        isLoading = true
         API().call(endpoint: "contact", method: "POST", payload: contact) { result in
             switch result {
             case .success(let updatedContact):
@@ -52,8 +53,10 @@ final class ContactStore: ObservableObject {
                     self.contacts[row] = updatedContact
                 }
                 print("Contact \(updatedContact.firstName) \(updatedContact.lastName) updated.")
+                self.isLoading = false
             case .failure(let error):
                 print(error)
+                self.isLoading = false
             }
         }
     }
