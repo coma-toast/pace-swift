@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct DetailView: View {
-    @Binding var labels: [String]
-    @Binding var data: [String]
+    var labels: [String]
+    var data: [String]
     
     var body: some View {
         VStack{
@@ -34,7 +34,7 @@ struct DetailView_Previews: PreviewProvider {
         @State(initialValue:  ["name", "phone"]) var labels: [String]
         @State(initialValue: ["myself smith", "1234567890"]) var data: [String]
         var body: some View {
-            DetailView(labels: $labels, data: $data)
+            DetailView(labels: labels, data: data)
         }
     }
 }

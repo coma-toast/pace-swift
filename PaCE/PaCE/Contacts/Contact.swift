@@ -12,9 +12,11 @@ import Combine
 
 final class ContactStore: ObservableObject {
     @Published var contacts: [Contact] = []
+    @Published var isLoading:Bool = false
     init() {
-        contacts.append(Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"))
-        contacts.append(Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"))
+//        contacts.append(Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"))
+//        contacts.append(Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"))
+        getAllContacts()
     }
     
     func orderByLastname() {
@@ -26,6 +28,7 @@ final class ContactStore: ObservableObject {
     }
     
     func getAllContacts(){
+        isLoading = true
         let payloadData: [Contact] = [Contact]()
         
         API().call(endpoint: "contact", method: "GET", payload: payloadData) { result in
@@ -33,8 +36,10 @@ final class ContactStore: ObservableObject {
             case .success(let contacts):
                 print(contacts)
                 self.contacts = contacts
+                self.isLoading = false
             case .failure(let error):
                 print(error)
+                self.isLoading = false
             }
         }
     }

@@ -10,15 +10,15 @@ import SwiftUI
 import Combine
 
 struct ContactDetail: View {
-    //    @Binding var contact: Contact
     let contact: Binding<Contact>
-    @State var labels: [String] = []
-    @State var data: [String] = []
+    @State private var labels: [String] = []
+    @State private var data: [String] = []
     init(contact: Binding<Contact>) {
+        print("init")
         self.contact = contact
-        //        self.data = []
-        labels = ["init"]
-        reflectProperties(contact: contact)
+//        _labels = State(initialValue: ["init"])
+//        print($labels)
+        reflectProperties(contact: contact.wrappedValue)
     }
     
     
@@ -28,17 +28,17 @@ struct ContactDetail: View {
             ForEach(labels.indices, id: \.self) { i in
                 Text(self.labels[i])
             }
-            DetailView(labels: $labels, data: $data)
-            NavigationLink(destination: ContactEdit(contact: contact)) {
+            DetailView(labels: labels, data: data)
+            NavigationLink(destination: ContactEdit(contact: contact.wrappedValue)) {
                 Text("Edit")
             }
             Spacer()
         }
     }
-    mutating func reflectProperties(contact: Binding<Contact>) {
+    mutating func reflectProperties(contact: Contact) {
         print("here")
-        print(contact)
-        let mirror = Mirror(reflecting: contact.wrappedValue)
+//        print(contact)
+        let mirror = Mirror(reflecting: contact)
         
         for child in mirror.children {
             if child.label != Optional("instance"), child.label != Optional("id") {
@@ -46,9 +46,9 @@ struct ContactDetail: View {
                 self.data.append(child.value as! String)
             }
         }
-        print(labels)
-        labels.append("test")
-        print(labels)
+        print(self.labels)
+        self.labels.append("test")
+        print(self.labels)
     }
 }
 
