@@ -14,8 +14,6 @@ final class ContactStore: ObservableObject {
     @Published var contacts: [Contact] = []
     @Published var isLoading:Bool = false
     init() {
-//        contacts.append(Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1"))
-//        contacts.append(Contact(id: "1", created: "123", firstName: "Joe", lastName: "Schmoe", company: "Company ABC", email: "jschmoe@123", phone: "1234", timezone: "edt", instance: "1"))
         getAllContacts()
     }
     
@@ -34,10 +32,12 @@ final class ContactStore: ObservableObject {
         API().call(endpoint: "contact", method: "GET", payload: payloadData) { result in
             switch result {
             case .success(let contacts):
+                // dev code
                 print(contacts)
                 self.contacts = contacts
                 self.isLoading = false
             case .failure(let error):
+                // dev code
                 print(error)
                 self.isLoading = false
             }
@@ -52,6 +52,7 @@ final class ContactStore: ObservableObject {
                 if let row = self.contacts.firstIndex(where: {$0.id == updatedContact.id}) {
                     self.contacts[row] = updatedContact
                 }
+                // dev code
                 print("Contact \(updatedContact.firstName) \(updatedContact.lastName) updated.")
                 self.isLoading = false
             case .failure(let error):
@@ -60,10 +61,6 @@ final class ContactStore: ObservableObject {
             }
         }
     }
-//    func removeCompleted() {
-//        todos.removeAll { $0.isDone }
-//    }
-
 }
 
 struct Contact: Codable, Identifiable {

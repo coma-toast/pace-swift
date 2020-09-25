@@ -7,6 +7,53 @@
 //
 
 import Foundation
+import SwiftUI
+import Combine
+
+final class ProjectStore: ObservableObject {
+    @Published var projects: [Project] = []
+    @Published var isLoading:Bool = false
+    init() {
+        getAllProjects()
+    }
+    
+    func getAllProjects(){
+        isLoading = true
+        let payloadData: [Project] = [Project]()
+        
+        API().call(endpoint: "project", method: "GET", payload: payloadData) { result in
+            switch result {
+            case .success(let projects):
+                // dev code
+                print(projects)
+                self.projects = projects
+                self.isLoading = false
+            case .failure(let error):
+                // dev code
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
+    
+    func updateProject(project: Project) {
+        isLoading = true
+        API().call(endpoint: "project", method: "POST", payload: project) { result in
+            switch result {
+            case .success(let updatedProject):
+                if let row = self.projects.firstIndex(where: {$0.id == updatedProject.id}) {
+                    self.projects[row] = updatedProject
+                }
+                // dev code
+                print("Project \(updatedProject.id) updated.")
+                self.isLoading = false
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
+}
 
 struct Project: Codable, Identifiable {
     var id: String = ""

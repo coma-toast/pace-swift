@@ -20,17 +20,19 @@ struct ContactView: View {
                             ContactViewItem(contact: self.$contactDatastore.contacts[index])
                         }
                     }
-                    Spacer()
+                    
                 }.blur(radius: self.contactDatastore.isLoading ? 3 : 0)
                 if self.contactDatastore.isLoading {
-                    LoadingView()
+                    ContactLoadingView()
                 }
+                Spacer()
             }.navigationBarTitle("Contacts")
         }
     }
 }
 
 struct ContactViewItem: View {
+    @EnvironmentObject var contactDatastore: ContactStore
     let contact: Binding<Contact>
     
     var body: some View {
@@ -44,6 +46,11 @@ struct ContactViewItem: View {
                 Spacer()
             }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
         }.buttonStyle(PlainButtonStyle())
+            .navigationBarItems(trailing:
+                Button("Refresh") {
+                    self.contactDatastore.getAllContacts()
+                }
+        )
     }
 }
 
@@ -85,19 +92,26 @@ extension ContactView {
     }
 }
 
-struct LoadingView: View {
+struct ContactLoadingView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                Text("Loading...").disabled(self.contactDatastore.isLoading)
-            }.frame(width: geometry.size.width / 2,
-                    height: geometry.size.height / 5)
-                .background(Color.secondary.colorInvert())
-                .foregroundColor(Color.primary)
-                .cornerRadius(20)
-                .opacity(self.contactDatastore.isLoading ? 1 : 0)
-        }
+//        NavigationView {
+            GeometryReader { geometry in
+                VStack {
+                    Text("Loading").disabled(self.contactDatastore.isLoading)
+                    if #available(iOS 14.0, *) {
+                        ProgressView()
+                    } else {
+                        Text("...")
+                    }
+                }.frame(width: geometry.size.width / 2,
+                        height: geometry.size.height / 5)
+                    .background(Color.secondary.colorInvert())
+                    .foregroundColor(Color.primary)
+                    .cornerRadius(20)
+                    .opacity(self.contactDatastore.isLoading ? 1 : 0)
+            }.background(Color.blue.opacity(0.5))
+//        }
     }
 }
 

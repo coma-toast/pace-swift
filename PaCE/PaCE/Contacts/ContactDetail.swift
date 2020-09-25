@@ -11,33 +11,26 @@ import Combine
 
 struct ContactDetail: View {
     let contact: Binding<Contact>
-    @State private var labels: [String] = []
-    @State private var data: [String] = []
+    var labels: [String] = []
+    var data: [String] = []
     init(contact: Binding<Contact>) {
-        print("init")
         self.contact = contact
-//        _labels = State(initialValue: ["init"])
-//        print($labels)
+//        self.labels = labels
+//        self.data = data
         reflectProperties(contact: contact.wrappedValue)
     }
     
     
     var body: some View {
         VStack {
-            ContactView.FullName(contact: contact)
-            ForEach(labels.indices, id: \.self) { i in
-                Text(self.labels[i])
-            }
             DetailView(labels: labels, data: data)
             NavigationLink(destination: ContactEdit(contact: contact.wrappedValue)) {
                 Text("Edit")
             }
             Spacer()
-        }
+        }.navigationBarTitle(contact.wrappedValue.firstName + " " + contact.wrappedValue.lastName)
     }
     mutating func reflectProperties(contact: Contact) {
-        print("here")
-//        print(contact)
         let mirror = Mirror(reflecting: contact)
         
         for child in mirror.children {
@@ -46,9 +39,6 @@ struct ContactDetail: View {
                 self.data.append(child.value as! String)
             }
         }
-        print(self.labels)
-        self.labels.append("test")
-        print(self.labels)
     }
 }
 

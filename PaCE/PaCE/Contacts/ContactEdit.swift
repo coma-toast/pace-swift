@@ -11,24 +11,10 @@ import Combine
 
 struct ContactEdit: View {
     @State var contact: Contact
-    //    var contact: Binding<Contact>
-    //    var tempContact: Binding<Contact>
     @EnvironmentObject var contactDatastore: ContactStore
-    //    init(contact: Contact) {
-    //        self.contact = contact
-    //    }
-    //    var labels: [String] = [String]()
-    //    var data: [String] = [String]()
-    //    init(contact: Contact) {
-    //        self.contact = contact
-    //        self.data = []
-    //        self.labels = []
-    //        reflectProperties(contact: contact)
-    //    }
-    
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             VStack {
                 // TODO: EditView(labels: labels, data: data)
                 Form {
@@ -57,12 +43,12 @@ struct ContactEdit: View {
                     }) {
                         Text("Submit").bold().fontWeight(.heavy)
                     }
-                }
+                }.background(Color.green)
                 Spacer()
-            }
+            }.background(Color.red)
             .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
             if self.contactDatastore.isLoading {
-                LoadingView()
+                ContactLoadingView()
             }
         }.navigationBarTitle("Edit")
     }
