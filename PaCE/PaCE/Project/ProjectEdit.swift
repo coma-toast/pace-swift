@@ -30,60 +30,13 @@ struct ProjectEdit: View {
                         Text("Due Date").bold()
                         TextField("Due Date", text: $project.dueDate)
                     }
-                    HStack {
-                        Text("Address").bold()
-                        TextField("Address", text: $project.address)
-                    }
-                    HStack {
-                        Text("City").bold()
-                        TextField("City", text: $project.city)
-                    }
-                    HStack {
-                        Text("State").bold()
-                        TextField("State", text: $project.state)
-                    }
-                    HStack {
-                        Text("Zip").bold()
-                        TextField("Zip", text: String($project.zip))
-                    }
+                    Address(project: $project)
                 }
+                
                 Form {
-                    HStack {
-                        Text("ProjectManager").bold()
-                        TextField("ProjectManager", text: $project.projectManager)
-                    }
-                    HStack {
-                        Text("ClientName").bold()
-                        TextField("ClientName", text: $project.clientName)
-                    }
-                    HStack {
-                        Text("eORName").bold()
-                        TextField("eORName", text: $project.eORName)
-                    }
-                    HStack {
-                        Text("Detailer Name").bold()
-                        TextField("Detailer Name", text: $project.detailerName)
-                    }
-                    HStack {
-                        Text("Inspection Lab").bold()
-                        TextField("Inspection Lab", text: $project.inspectionLab)
-                    }
-                    HStack {
-                        Text("Steel Erector Name").bold()
-                        TextField("Steel Erector Name", text: $project.steelErectorName)
-                    }
-                    HStack {
-                        Text("Steel Fabricator Name").bold()
-                        TextField("Steel Fabricator Name", text: $project.steelFabricatorName)
-                    }
-                    HStack {
-                        Text("General Contractor").bold()
-                        TextField("General Contractor", text: $project.generalContractor)
-                    }
-                }
-                Form {
-                    PrimaryContact(project: project)
-                    Stats(project: project)
+                    PrimaryContact(project: $project)
+                    Names(project: $project)
+                    Stats(project: $project)
                     
                     Button(action: {
                         self.projectDatastore.updateProject(project: self.project)
@@ -101,17 +54,40 @@ struct ProjectEdit: View {
     }
 }
 
+struct Address: View {
+    let project: Binding<Project>
+    
+    var body: some View {
+        HStack {
+            Text("Address").bold()
+            TextField("Address", text: project.address)
+        }
+        HStack {
+            Text("City").bold()
+            TextField("City", text: project.city)
+        }
+        HStack {
+            Text("State").bold()
+            TextField("State", text: project.state)
+        }
+        HStack {
+            Text("Zip").bold()
+            TextField("Zip", value: project.zip, formatter: NumberFormatter())
+        }
+    }
+}
+
 struct Stats: View {
     let project: Binding<Project>
     
     var body: some View {
         HStack {
             Text("Square Footage").bold()
-            TextField("Square Footage", text: String(project.squareFootage))
+            TextField("Square Footage", value: project.squareFootage, formatter: NumberFormatter())
         }
         HStack {
             Text("Weight In Tons").bold()
-            TextField("Weight In Tons", text: String(project.weightInTons))
+            TextField("Weight In Tons", value: project.weightInTons, formatter: NumberFormatter())
         }
     }
 }
@@ -131,6 +107,47 @@ struct PrimaryContact: View {
         HStack {
             Text("Primary Contact Email").bold()
             TextField("Primary Contact Email", text: project.primaryContactEmail)
+        }
+    }
+}
+
+struct Names: View {
+    let project: Binding<Project>
+    
+    var body: some View {
+        
+        HStack {
+            Text("ProjectManager").bold()
+            TextField("ProjectManager", text: project.projectManager)
+        }
+        HStack {
+            Text("ClientName").bold()
+            TextField("ClientName", text: project.clientName)
+        }
+        HStack {
+            Text("eORName").bold()
+            TextField("eORName", text: project.eORName)
+        }
+        HStack {
+            Text("Detailer Name").bold()
+            TextField("Detailer Name", text: project.detailerName)
+        }
+        HStack {
+            Text("Inspection Lab").bold()
+            TextField("Inspection Lab", text: project.inspectionLab)
+        }
+        HStack {
+            Text("Steel Erector Name").bold()
+            TextField("Steel Erector Name", text: project.steelErectorName)
+        }
+        HStack {
+            Text("Steel Fabricator Name").bold()
+            TextField("Steel Fabricator Name", text: project.steelFabricatorName)
+        }
+        HStack {
+            Text("General Contractor").bold()
+            TextField("General Contractor", text: project.generalContractor)
+            
         }
     }
 }
