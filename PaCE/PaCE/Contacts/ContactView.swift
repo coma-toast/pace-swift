@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContactView: View {
     @EnvironmentObject var contactDatastore: ContactStore
+    @State var showAddSheet = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,9 +27,24 @@ struct ContactView: View {
                     ContactLoadingView()
                 }
                 Spacer()
-            }.navigationBarTitle("Contacts")
+            }
         }
-    }
+        .navigationBarTitle("Contacts")
+        .navigationBarItems(trailing:
+                                HStack {
+                                    Button(action: {
+                                                self.showAddSheet.toggle()
+                                            }) {
+                                                Text("Add")
+                                            }.sheet(isPresented: $showAddSheet) {
+                                                ContactAdd(showAddSheet: $showAddSheet)
+                                            }
+                                    Button("Refresh") {
+                                        self.contactDatastore.getAllContacts()
+                                    }
+                                })
+        
+        }
 }
 
 struct ContactViewItem: View {
@@ -46,11 +62,6 @@ struct ContactViewItem: View {
                 Spacer()
             }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
         }.buttonStyle(PlainButtonStyle())
-            .navigationBarItems(trailing:
-                Button("Refresh") {
-                    self.contactDatastore.getAllContacts()
-                }
-        )
     }
 }
 
@@ -95,23 +106,23 @@ extension ContactView {
 struct ContactLoadingView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
-//        NavigationView {
-            GeometryReader { geometry in
-                VStack {
-                    Text("Loading").disabled(self.contactDatastore.isLoading)
-                    if #available(iOS 14.0, *) {
-                        ProgressView()
-                    } else {
-                        Text("...")
-                    }
-                }.frame(width: geometry.size.width / 2,
-                        height: geometry.size.height / 5)
-                    .background(Color.secondary.colorInvert())
-                    .foregroundColor(Color.primary)
-                    .cornerRadius(20)
-                    .opacity(self.contactDatastore.isLoading ? 1 : 0)
-            }.background(Color.blue.opacity(0.5))
-//        }
+        //        NavigationView {
+        GeometryReader { geometry in
+            VStack {
+                Text("Loading").disabled(self.contactDatastore.isLoading)
+                if #available(iOS 14.0, *) {
+                    ProgressView()
+                } else {
+                    Text("...")
+                }
+            }.frame(width: geometry.size.width / 2,
+                    height: geometry.size.height / 5)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+            .opacity(self.contactDatastore.isLoading ? 1 : 0)
+        }.background(Color.blue.opacity(0.5))
+        //        }
     }
 }
 

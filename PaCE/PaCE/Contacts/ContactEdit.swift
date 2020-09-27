@@ -45,7 +45,8 @@ struct ContactEdit: View {
                     }
                 }.background(Color.green)
                 Spacer()
-            }.background(Color.red)
+            }
+            //.background(Color.red) // dev code
             .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
             if self.contactDatastore.isLoading {
                 ContactLoadingView()

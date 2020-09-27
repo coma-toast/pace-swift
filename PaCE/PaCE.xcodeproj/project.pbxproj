@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC095EBD2520B171005A1286 /* ContactAdd.swift */; };
 		AC30FCB624E7277100488A4D /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB524E7277100488A4D /* ContactView.swift */; };
 		AC30FCB824E728C800488A4D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB724E728C800488A4D /* Contact.swift */; };
 		AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCBA24E72B8800488A4D /* ContactResponse.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC095EBD2520B171005A1286 /* ContactAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAdd.swift; sourceTree = "<group>"; };
 		AC30FCB524E7277100488A4D /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		AC30FCB724E728C800488A4D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AC30FCBA24E72B8800488A4D /* ContactResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResponse.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				AC30FCB524E7277100488A4D /* ContactView.swift */,
 				AC9D55E124F1A4EB003A420D /* ContactDetail.swift */,
 				AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */,
+				AC095EBD2520B171005A1286 /* ContactAdd.swift */,
 				AC30FCBA24E72B8800488A4D /* ContactResponse.swift */,
 			);
 			path = Contacts;
@@ -269,7 +272,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Jason Dale";
 				TargetAttributes = {
 					AC464E1824E4C25700A266A0 = {
@@ -345,6 +348,7 @@
 				AC30FCB624E7277100488A4D /* ContactView.swift in Sources */,
 				AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */,
 				AC9D55E924F34005003A420D /* ProjectViewModel.swift in Sources */,
+				AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */,
 				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
 				AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */,
 				AC9D55E424F33C1F003A420D /* Project.swift in Sources */,
@@ -430,6 +434,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -454,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -490,6 +495,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -508,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

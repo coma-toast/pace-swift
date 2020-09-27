@@ -61,6 +61,25 @@ final class ContactStore: ObservableObject {
             }
         }
     }
+    
+    func addContact(contact: Contact) {
+        isLoading = true
+        API().call(endpoint: "contact", method: "PUT", payload: contact) { result in
+            switch result {
+            case .success(let updatedContact):
+                self.getAllContacts()
+                if self.contacts.firstIndex(where: {$0.id == updatedContact.id}) != nil {
+                    
+                    // dev code
+                    print("Contact \(updatedContact.firstName) \(updatedContact.lastName) added.")
+                    self.isLoading = false
+                }
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
 }
 
 struct Contact: Codable, Identifiable {
@@ -72,7 +91,7 @@ struct Contact: Codable, Identifiable {
     var email: String = ""
     var phone: String = ""
     var timezone: String = ""
-//    var isFavorite: Bool = false
+    //    var isFavorite: Bool = false
     var instance: String = ""
     
     enum CodingKeys: String, CodingKey {
@@ -84,7 +103,7 @@ struct Contact: Codable, Identifiable {
         case email = "email"
         case phone = "phone"
         case timezone = "timezone"
-//        case isFavorite = "isfavorite"
+        //        case isFavorite = "isfavorite"
         case instance = "instance"
     }
 }
