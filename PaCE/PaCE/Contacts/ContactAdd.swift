@@ -27,19 +27,19 @@ struct ContactAdd: View {
                         }
                         HStack {
                             Text("Last Name").bold()
-                            TextField("Last Name", text: $contact.lastName)
+                            TextField("Last Name", text: $contact.lastName).font(.body)
                         }
                         HStack {
                             Text("Company").bold()
-                            TextField("Company", text: $contact.company)
+                            TextField("Company", text: $contact.company).font(.body)
                         }
                         HStack {
                             Text("Email").bold()
-                            TextField("Email", text: $contact.email)
+                            TextField("Email", text: $contact.email).font(.body)
                         }
                         HStack {
                             Text("Phone").bold()
-                            TextField("Phone", text: $contact.phone)
+                            TextField("Phone", text: $contact.phone).font(.body)
                         }
                     }
                     Spacer()
@@ -60,6 +60,7 @@ struct ContactAdd: View {
                         Button("Reset") {
                             self.contact = Contact()
                         }
+                        Spacer()
                         Button("Submit") {
                             self.contactDatastore.addContact(contact: self.contact)
                             self.showAddSheet = false

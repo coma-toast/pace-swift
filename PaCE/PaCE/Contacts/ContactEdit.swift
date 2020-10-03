@@ -53,21 +53,6 @@ struct ContactEdit: View {
                 ContactLoadingView()
             }
         }
-        .navigationBarTitle("Edit")
-        .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
-        .toolbar(content: {
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
-                    Button("Submit") {
-                        self.contactDatastore.updateContact(contact: contact)
-                        self.showEditSheet = false
-                    }
-                    Button(action: {}, label: {
-                        Text("Button")
-                    })
-                }
-            }
-        })
     }
 }
 

@@ -44,6 +44,10 @@ final class ContactStore: ObservableObject {
         }
     }
     
+    func returnCurrentUsers() -> [Contact] {
+        return self.contacts
+    }
+    
     func updateContact(contact: Contact) {
         isLoading = true
         API().call(endpoint: "contact", method: "POST", payload: contact) { result in

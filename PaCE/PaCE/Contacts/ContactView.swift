@@ -19,7 +19,9 @@ struct ContactView: View {
                     List {
                         ForEach(self.contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in
                             ContactViewItem(contact: self.$contactDatastore.contacts[index])
-                        }
+                        }.onDelete(perform: { indexSet in
+                            removeContact(atOffset: indexSet, contactDatastore: self.contactDatastore)
+                        })
                     }
                     
                 }.blur(radius: self.contactDatastore.isLoading ? 3 : 0)
@@ -33,18 +35,28 @@ struct ContactView: View {
         .navigationBarItems(trailing:
                                 HStack {
                                     Button(action: {
-                                                self.showAddSheet.toggle()
-                                            }) {
-                                                Image(systemName: "plus")
-                                            }.sheet(isPresented: $showAddSheet) {
-                                                ContactAdd(showAddSheet: $showAddSheet).environmentObject(contactDatastore)
-                                            }
+                                        self.showAddSheet.toggle()
+                                    }) {
+                                        Image(systemName: "plus")
+                                    }.sheet(isPresented: $showAddSheet) {
+                                        ContactAdd(showAddSheet: $showAddSheet).environmentObject(contactDatastore)
+                                    }
+                                    EditButton()
                                     Button("Refresh") {
                                         self.contactDatastore.getAllContacts()
                                     }
                                 })
-        
-        }
+    }
+}
+
+func removeContact(atOffset: IndexSet, contactDatastore: ContactStore) {
+    print("here")
+    contactDatastore.contacts.remove(atOffsets: atOffset)
+    print(atOffset)
+    atOffset.forEach { (i) in
+        print("i", i)
+        contactDatastore.deleteContact(contact: contactDatastore.contacts[i])
+    }
 }
 
 struct ContactViewItem: View {

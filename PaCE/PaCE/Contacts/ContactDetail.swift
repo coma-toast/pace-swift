@@ -57,13 +57,31 @@ struct editSheet: View {
             }) {
                 Text("Edit")
             }.sheet(isPresented: $showEditSheet) {
-                ContactEdit(showEditSheet: $showEditSheet, contact: contact)
-                    .environmentObject(contactDatastore)
-                Button(action: {
-                    self.contactDatastore.deleteContact(contact: $contact.wrappedValue)
-                }, label: {
-                    Image(systemName: "trash")
+                NavigationView {
+                    ContactEdit(showEditSheet: $showEditSheet, contact: contact)
+                        .environmentObject(contactDatastore)
+                    
+                
+                
+                .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
+                .navigationBarTitle("Edit")
+                .toolbar(content: {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack {
+                            Button("Submit") {
+                                self.contactDatastore.updateContact(contact: contact)
+                                self.showEditSheet = false
+                            }
+                            Spacer()
+                            Button(action: {
+                                self.contactDatastore.deleteContact(contact: $contact.wrappedValue)
+                            }, label: {
+                                Image(systemName: "trash")
+                            })
+                        }
+                    }
                 })
+                }
             }
         }
     }
