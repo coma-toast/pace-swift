@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 struct ContactEdit: View {
+    @Binding var showEditSheet: Bool
     @State var contact: Contact
     @EnvironmentObject var contactDatastore: ContactStore
     
@@ -39,7 +40,7 @@ struct ContactEdit: View {
                         TextField("Phone", text: $contact.phone)
                     }
                     Button(action: {
-                        self.contactDatastore.updateContact(contact: self.contact)
+                        
                     }) {
                         Text("Submit").bold().fontWeight(.heavy)
                     }
@@ -51,7 +52,22 @@ struct ContactEdit: View {
             if self.contactDatastore.isLoading {
                 ContactLoadingView()
             }
-        }.navigationBarTitle("Edit")
+        }
+        .navigationBarTitle("Edit")
+        .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
+        .toolbar(content: {
+            ToolbarItem(placement: .bottomBar) {
+                HStack {
+                    Button("Submit") {
+                        self.contactDatastore.updateContact(contact: contact)
+                        self.showEditSheet = false
+                    }
+                    Button(action: {}, label: {
+                        Text("Button")
+                    })
+                }
+            }
+        })
     }
 }
 

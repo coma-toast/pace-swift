@@ -42,15 +42,18 @@ class API {
             }
             
             guard let httpResponse = response as? HTTPURLResponse,
-                (200...299).contains(httpResponse.statusCode) else {
-                    print("Error with the response, unexpected status code: \(String(describing: response))")
-                    completion(.failure(.serverError))
-                    return
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Error with the response, unexpected status code: \(String(describing: response))")
+                completion(.failure(.serverError))
+                return
             }
-            
-            let returnData: T = try! JSONDecoder().decode(T.self, from: data!)
-            DispatchQueue.main.async {
-                completion(.success(returnData))
+            if method == "DELETE" {
+                completion(.success(payload!))
+            } else {
+                let returnData: T = try! JSONDecoder().decode(T.self, from: data!)
+                DispatchQueue.main.async {
+                    completion(.success(returnData))
+                }
             }
         }
         .resume()

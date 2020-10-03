@@ -80,6 +80,25 @@ final class ContactStore: ObservableObject {
             }
         }
     }
+    
+    func deleteContact(contact: Contact) {
+        isLoading = true
+        API().call(endpoint: "contact", method: "DELETE", payload: contact) { result in
+            switch result {
+            case .success(let status):
+                self.getAllContacts()
+                if self.contacts.firstIndex(where: {$0.id == contact.id}) == nil {
+                    
+                    // dev code
+                    print("Result: \(status). Contact \(contact.firstName) \(contact.lastName) deleted.")
+                    self.isLoading = false
+                }
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
 }
 
 struct Contact: Codable, Identifiable {

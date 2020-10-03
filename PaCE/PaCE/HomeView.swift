@@ -65,9 +65,12 @@ struct HomeView: View {
                 .cornerRadius(15)
                 .shadow(color: Color.black, radius: 5, x:3, y:3)
                 HStack {
-                    Image("gear").resizable().frame(width: 40, height: 40, alignment: .leading)
-                    Spacer()
-                    Text("Settings").font(.title)
+                    NavigationLink(
+                        destination: Styling()) {
+                        Image("gear").resizable().frame(width: 40, height: 40, alignment: .leading)
+                        Spacer()
+                        Text("Settings").font(.title).foregroundColor(.black)
+                    }
                 }
                 .padding()
                 .background(Color(red: 0.8, green: 0.8, blue: 0.8))
@@ -128,6 +131,8 @@ extension RandomAccessCollection {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().previewLayout(.fixed(width: 375, height: 500))
+        HomeView()
     }
 }
+
+

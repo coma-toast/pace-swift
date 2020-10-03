@@ -13,10 +13,12 @@ struct ContactDetail: View {
     let contact: Binding<Contact>
     var labels: [String] = []
     var data: [String] = []
+    @EnvironmentObject var contactDatastore: ContactStore
+    @State var showEditSheet = false
     init(contact: Binding<Contact>) {
         self.contact = contact
-//        self.labels = labels
-//        self.data = data
+        //        self.labels = labels
+        //        self.data = data
         reflectProperties(contact: contact.wrappedValue)
     }
     
@@ -24,11 +26,13 @@ struct ContactDetail: View {
     var body: some View {
         VStack {
             DetailView(labels: labels, data: data)
-            NavigationLink(destination: ContactEdit(contact: contact.wrappedValue)) {
-                Text("Edit")
-            }
+            //            NavigationLink(destination: ContactEdit(contact: contact.wrappedValue)) {
+            //                Text("Edit")
+            //            }
             Spacer()
-        }.navigationBarTitle(contact.wrappedValue.firstName + " " + contact.wrappedValue.lastName)
+        }
+        .navigationBarTitle(contact.wrappedValue.firstName + " " + contact.wrappedValue.lastName)
+        .navigationBarItems(trailing: editSheet(showEditSheet: self.$showEditSheet, contact: contact).environmentObject(contactDatastore))
     }
     mutating func reflectProperties(contact: Contact) {
         let mirror = Mirror(reflecting: contact)
@@ -37,6 +41,29 @@ struct ContactDetail: View {
             if child.label != Optional("instance"), child.label != Optional("id") {
                 self.labels.append(String.titleCase(child.label ?? "")())
                 self.data.append(child.value as! String)
+            }
+        }
+    }
+}
+
+struct editSheet: View {
+    @Binding var showEditSheet: Bool
+    @Binding var contact: Contact
+    @EnvironmentObject var contactDatastore: ContactStore
+    var body: some View {
+        HStack {
+            Button(action: {
+                self.showEditSheet.toggle()
+            }) {
+                Text("Edit")
+            }.sheet(isPresented: $showEditSheet) {
+                ContactEdit(showEditSheet: $showEditSheet, contact: contact)
+                    .environmentObject(contactDatastore)
+                Button(action: {
+                    self.contactDatastore.deleteContact(contact: $contact.wrappedValue)
+                }, label: {
+                    Image(systemName: "trash")
+                })
             }
         }
     }

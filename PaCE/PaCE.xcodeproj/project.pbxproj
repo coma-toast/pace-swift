@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC095EBD2520B171005A1286 /* ContactAdd.swift */; };
+		AC095EC92520E09E005A1286 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC095EC82520E09E005A1286 /* Styling.swift */; };
 		AC30FCB624E7277100488A4D /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB524E7277100488A4D /* ContactView.swift */; };
 		AC30FCB824E728C800488A4D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB724E728C800488A4D /* Contact.swift */; };
 		AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCBA24E72B8800488A4D /* ContactResponse.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		AC095EBD2520B171005A1286 /* ContactAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAdd.swift; sourceTree = "<group>"; };
+		AC095EC82520E09E005A1286 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
 		AC30FCB524E7277100488A4D /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		AC30FCB724E728C800488A4D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AC30FCBA24E72B8800488A4D /* ContactResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResponse.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				AC464E2A24E4C25900A266A0 /* Info.plist */,
 				AC464E2424E4C25900A266A0 /* Preview Content */,
 				ACF7858824E614F500B4F750 /* HomeView.swift */,
+				AC095EC82520E09E005A1286 /* Styling.swift */,
 				AC30FCC024E72F8D00488A4D /* DB.swift */,
 				AC30FCBC24E72D4B00488A4D /* APIClient.swift */,
 				AC9D55DF24EF0878003A420D /* APIClient2.swift */,
@@ -355,6 +358,7 @@
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
 				AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */,
 				AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */,
+				AC095EC92520E09E005A1286 /* Styling.swift in Sources */,
 				ACF7858924E614F500B4F750 /* HomeView.swift in Sources */,
 				AC464E2124E4C25700A266A0 /* ContentView.swift in Sources */,
 				AC30FCBF24E72DDF00488A4D /* ContactViewModel.swift in Sources */,

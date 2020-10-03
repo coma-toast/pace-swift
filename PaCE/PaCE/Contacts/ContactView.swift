@@ -35,9 +35,9 @@ struct ContactView: View {
                                     Button(action: {
                                                 self.showAddSheet.toggle()
                                             }) {
-                                                Text("Add")
+                                                Image(systemName: "plus")
                                             }.sheet(isPresented: $showAddSheet) {
-                                                ContactAdd(showAddSheet: $showAddSheet)
+                                                ContactAdd(showAddSheet: $showAddSheet).environmentObject(contactDatastore)
                                             }
                                     Button("Refresh") {
                                         self.contactDatastore.getAllContacts()
@@ -110,11 +110,6 @@ struct ContactLoadingView: View {
         GeometryReader { geometry in
             VStack {
                 Text("Loading").disabled(self.contactDatastore.isLoading)
-                if #available(iOS 14.0, *) {
-                    ProgressView()
-                } else {
-                    Text("...")
-                }
             }.frame(width: geometry.size.width / 2,
                     height: geometry.size.height / 5)
             .background(Color.secondary.colorInvert())

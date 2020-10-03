@@ -43,18 +43,16 @@ struct ContactAdd: View {
                         }
                     }
                     Spacer()
-                }.background(Color.red)
+                }
                 .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
+                
                 if self.contactDatastore.isLoading {
                     ContactLoadingView()
                 }
             }
             
             .navigationBarTitle(Text("Add Contact"), displayMode: .inline)
-            
-            .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {
-                Text("Done")
-            }))
+            .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
             .toolbar(content: {
                 
                 ToolbarItem(placement: .bottomBar) {
@@ -62,9 +60,6 @@ struct ContactAdd: View {
                         Button("Reset") {
                             self.contact = Contact()
                         }
-                        .background(Color.black)
-                        .buttonStyle(PlainButtonStyle())
-                        
                         Button("Submit") {
                             self.contactDatastore.addContact(contact: self.contact)
                             self.showAddSheet = false
