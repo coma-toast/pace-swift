@@ -39,11 +39,30 @@ struct ContactEdit: View {
                         Text("Phone").bold()
                         TextField("Phone", text: $contact.phone).font(.body)
                     }
-                }.background(Color.green)
+                    // Not sure if we want to include this info
+//                    HStack {
+//                        Text("Timezome").bold()
+//                        TextField("Timezone", text: $contact.timezone).font(.body)
+//                    }
+                }
                 Spacer()
             }
-            //.background(Color.red) // dev code
+            .background(Color.red) // dev code
             .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
+            .toolbar(content: {
+                ToolbarItem(placement: .bottomBar) {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.contactDatastore.updateContact(contact: contact)
+                            self.showEditSheet = false
+                        }, label: {
+                            Image(systemName: "checkmark")
+                        })
+                        Spacer()
+                    }
+                }
+            })
             if self.contactDatastore.isLoading {
                 ContactLoadingView()
             }

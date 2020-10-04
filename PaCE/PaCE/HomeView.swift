@@ -77,9 +77,10 @@ struct HomeView: View {
                 .cornerRadius(15)
                 .shadow(color: Color.black, radius: 5, x:3, y:3)
             }
+            .navigationBarTitle("Menu")
             .padding(0)
         }.background(Color(red: 0.8, green: 0.8, blue: 0.8))
-        .navigationBarTitle("Menu")
+
         
     }
 }

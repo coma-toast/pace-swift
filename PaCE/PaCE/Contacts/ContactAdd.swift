@@ -41,6 +41,10 @@ struct ContactAdd: View {
                             Text("Phone").bold()
                             TextField("Phone", text: $contact.phone).font(.body)
                         }
+                        //                        HStack {
+                        //                            Text("Timezome").bold()
+                        //                            TextField("Timezone", text: $contact.timezone).font(.body)
+                        //                        }
                     }
                     Spacer()
                 }
@@ -50,23 +54,22 @@ struct ContactAdd: View {
                     ContactLoadingView()
                 }
             }
-            
             .navigationBarTitle(Text("Add Contact"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
             .toolbar(content: {
-                
                 ToolbarItem(placement: .bottomBar) {
-                    HStack {
-                        Button("Reset") {
-                            self.contact = Contact()
-                        }
-                        Spacer()
-                        Button("Submit") {
-                            self.contactDatastore.addContact(contact: self.contact)
-                            self.showAddSheet = false
-                        }
+                    Button("Reset") {
+                        self.contact = Contact()
                     }
-                    
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Spacer()
+                }
+                ToolbarItem(placement: .bottomBar) {
+                    Button("Submit") {
+                        self.contactDatastore.addContact(contact: self.contact)
+                        self.showAddSheet = false
+                    }
                 }
             })
         }

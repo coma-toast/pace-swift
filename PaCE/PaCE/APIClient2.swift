@@ -18,6 +18,13 @@ enum ApiError: Error {
 class API {
     private let baseUrl = "https://pace-api.jasondale.me/api/"
     func call<T: Codable>(endpoint: String, method: String, payload: T? = nil, completion: @escaping (Result<T, ApiError>) -> Void) {
+        // Config
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(formatter)
+
         guard let url = URL(string: baseUrl+endpoint) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = method
@@ -51,7 +58,7 @@ class API {
                 completion(.success(payload!))
             } else {
                 if data?.description != "null" {
-                    let returnData: T = try! JSONDecoder().decode(T.self, from: data!)
+                    let returnData: T = try! decoder.decode(T.self, from: data!)
                     DispatchQueue.main.async {
                         completion(.success(returnData))
                     }

@@ -41,9 +41,11 @@ struct ContactView: View {
                                     }.sheet(isPresented: $showAddSheet) {
                                         ContactAdd(showAddSheet: $showAddSheet).environmentObject(contactDatastore)
                                     }
-                                    EditButton()
-                                    Button("Refresh") {
+
+                                    Button(action: {
                                         self.contactDatastore.getAllContacts()
+                                    }) {
+                                        Image(systemName: "arrow.clockwise")
                                     }
                                 })
     }
@@ -78,19 +80,7 @@ extension ContactView {
     struct Icon: View {
         @Binding var contact: Contact
         var body: some View {
-            ZStack{
-                Rectangle()
-                    .fill(Color.gray)
-                    .frame(width: 60, height: 60)
-                    .shadow(radius: 3)
-                
-                VStack{
-                    Text(contact.firstName.prefix(1) + contact.lastName.prefix(1))
-                        .font(.largeTitle)
-                        .fixedSize(horizontal: false, vertical: false)
-                    
-                }
-            }
+            NormalIcon(left: contact.firstName, right: contact.lastName)
         }
     }
     struct FullName: View {
@@ -115,21 +105,7 @@ extension ContactView {
 struct ContactLoadingView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
-        //        NavigationView {
-        Spacer()
-        GeometryReader { geometry in
-            VStack(alignment: .center) {
-                Text("Loading").disabled(self.contactDatastore.isLoading)
-            }.frame(width: geometry.size.width / 2,
-                    height: geometry.size.height / 5)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(20)
-            .opacity(self.contactDatastore.isLoading ? 1 : 0)
-
-        }.background(Color.blue.opacity(0.5))
-        Spacer()
-        //        }
+        LoadingScreen(isLoading: self.contactDatastore.isLoading)
     }
 }
 

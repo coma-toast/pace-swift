@@ -39,6 +39,10 @@ struct ContactDetail: View {
         
         for child in mirror.children {
             if child.label != Optional("instance"), child.label != Optional("id") {
+                // TODO: get better date formatting.
+//                if child.label == Optional("created") {
+//                    child.value = Text(child.value, style: Text.DateStyle)
+//                }
                 self.labels.append(String.titleCase(child.label ?? "")())
                 self.data.append(child.value as! String)
             }
@@ -55,7 +59,7 @@ struct editSheet: View {
             Button(action: {
                 self.showEditSheet.toggle()
             }) {
-                Text("Edit")
+                Image(systemName: "pencil")
             }.sheet(isPresented: $showEditSheet) {
                 NavigationView {
                     ContactEdit(showEditSheet: $showEditSheet, contact: contact)
@@ -65,18 +69,6 @@ struct editSheet: View {
                 
                 .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
                 .navigationBarTitle("Edit")
-                .toolbar(content: {
-                    ToolbarItem(placement: .bottomBar) {
-                        HStack {
-                            Spacer()
-                            Button("Submit") {
-                                self.contactDatastore.updateContact(contact: contact)
-                                self.showEditSheet = false
-                            }
-                            Spacer()
-                        }
-                    }
-                })
                 }
             }
         }
@@ -102,7 +94,7 @@ struct ContactDetail_Previews: PreviewProvider {
     }
     
     struct PreviewWrapper: View {
-        @State(initialValue:  Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", timezone: "EDT", instance: "1")) var contact: Contact
+        @State(initialValue:  Contact(id: "1234", created: "123", firstName: "Testy", lastName: "McContact", company: "Super Long Company Name, Co.", email: "test@superlongcompanynameco.com", phone: "1231231234", instance: "1")) var contact: Contact
         
         var body: some View {
             ContactDetail(contact: $contact)

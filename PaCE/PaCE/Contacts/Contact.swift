@@ -113,7 +113,7 @@ struct Contact: Codable, Identifiable {
     var company: String = ""
     var email: String = ""
     var phone: String = ""
-    var timezone: String = ""
+//    var timezone: String = ""
     //    var isFavorite: Bool = false
     var instance: String = ""
     
@@ -125,7 +125,7 @@ struct Contact: Codable, Identifiable {
         case company = "company"
         case email = "email"
         case phone = "phone"
-        case timezone = "timezone"
+//        case timezone = "timezone"
         //        case isFavorite = "isfavorite"
         case instance = "instance"
     }
