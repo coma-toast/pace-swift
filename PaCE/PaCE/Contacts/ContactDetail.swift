@@ -68,16 +68,12 @@ struct editSheet: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .bottomBar) {
                         HStack {
+                            Spacer()
                             Button("Submit") {
                                 self.contactDatastore.updateContact(contact: contact)
                                 self.showEditSheet = false
                             }
                             Spacer()
-                            Button(action: {
-                                self.contactDatastore.deleteContact(contact: $contact.wrappedValue)
-                            }, label: {
-                                Image(systemName: "trash")
-                            })
                         }
                     }
                 })

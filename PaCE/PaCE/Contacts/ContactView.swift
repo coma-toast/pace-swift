@@ -50,12 +50,9 @@ struct ContactView: View {
 }
 
 func removeContact(atOffset: IndexSet, contactDatastore: ContactStore) {
-    print("here")
-    contactDatastore.contacts.remove(atOffsets: atOffset)
-    print(atOffset)
+    let tempContacts = contactDatastore.contacts
     atOffset.forEach { (i) in
-        print("i", i)
-        contactDatastore.deleteContact(contact: contactDatastore.contacts[i])
+        contactDatastore.deleteContact(contact: tempContacts[i])
     }
 }
 
@@ -119,8 +116,9 @@ struct ContactLoadingView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
         //        NavigationView {
+        Spacer()
         GeometryReader { geometry in
-            VStack {
+            VStack(alignment: .center) {
                 Text("Loading").disabled(self.contactDatastore.isLoading)
             }.frame(width: geometry.size.width / 2,
                     height: geometry.size.height / 5)
@@ -128,7 +126,9 @@ struct ContactLoadingView: View {
             .foregroundColor(Color.primary)
             .cornerRadius(20)
             .opacity(self.contactDatastore.isLoading ? 1 : 0)
+
         }.background(Color.blue.opacity(0.5))
+        Spacer()
         //        }
     }
 }

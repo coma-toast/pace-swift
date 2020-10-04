@@ -21,28 +21,23 @@ struct ContactEdit: View {
                 Form {
                     HStack {
                         Text("First Name").bold()
-                        TextField("First Name", text: $contact.firstName)
+                        TextField("First Name", text: $contact.firstName).font(.body)
                     }
                     HStack {
                         Text("Last Name").bold()
-                        TextField("Last Name", text: $contact.lastName)
+                        TextField("Last Name", text: $contact.lastName).font(.body)
                     }
                     HStack {
                         Text("Company").bold()
-                        TextField("Company", text: $contact.company)
+                        TextField("Company", text: $contact.company).font(.body)
                     }
                     HStack {
                         Text("Email").bold()
-                        TextField("Email", text: $contact.email)
+                        TextField("Email", text: $contact.email).font(.body)
                     }
                     HStack {
                         Text("Phone").bold()
-                        TextField("Phone", text: $contact.phone)
-                    }
-                    Button(action: {
-                        
-                    }) {
-                        Text("Submit").bold().fontWeight(.heavy)
+                        TextField("Phone", text: $contact.phone).font(.body)
                     }
                 }.background(Color.green)
                 Spacer()

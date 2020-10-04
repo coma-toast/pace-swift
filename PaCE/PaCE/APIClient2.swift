@@ -50,9 +50,13 @@ class API {
             if method == "DELETE" {
                 completion(.success(payload!))
             } else {
-                let returnData: T = try! JSONDecoder().decode(T.self, from: data!)
-                DispatchQueue.main.async {
-                    completion(.success(returnData))
+                if data?.description != "null" {
+                    let returnData: T = try! JSONDecoder().decode(T.self, from: data!)
+                    DispatchQueue.main.async {
+                        completion(.success(returnData))
+                    }
+                } else {
+                    completion(.failure(.serverError))
                 }
             }
         }
