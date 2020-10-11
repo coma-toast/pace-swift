@@ -39,7 +39,6 @@ class API {
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            print("here")
             print(data as Any)
             print(response as Any)
             if let error = error {

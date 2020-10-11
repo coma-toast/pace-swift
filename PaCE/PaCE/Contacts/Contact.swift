@@ -26,26 +26,24 @@ final class ContactStore: ObservableObject {
     }
     
     func getAllContacts(){
-        isLoading = true
-        let payloadData: [Contact] = [Contact]()
-        
-        API().call(endpoint: "contact", method: "GET", payload: payloadData) { result in
-            switch result {
-            case .success(let contacts):
-                // dev code
-                print(contacts)
-                self.contacts = contacts
-                self.isLoading = false
-            case .failure(let error):
-                // dev code
-                print(error)
-                self.isLoading = false
+        DispatchQueue.main.async {
+            self.isLoading = true
+            let payloadData: [Contact] = [Contact]()
+
+            API().call(endpoint: "contact", method: "GET", payload: payloadData) { result in
+                switch result {
+                case .success(let contacts):
+                    // dev code
+                    print(contacts)
+                    self.contacts = contacts
+                    self.isLoading = false
+                case .failure(let error):
+                    // dev code
+                    print(error)
+                    self.isLoading = false
+                }
             }
         }
-    }
-    
-    func returnCurrentUsers() -> [Contact] {
-        return self.contacts
     }
     
     func updateContact(contact: Contact) {
@@ -84,19 +82,38 @@ final class ContactStore: ObservableObject {
             }
         }
     }
-    
-    func deleteContact(contact: Contact) {
+
+    func deleteContactPermanently(contact: Contact) {
         isLoading = true
         API().call(endpoint: "contact", method: "DELETE", payload: contact) { result in
             switch result {
             case .success(let status):
                 self.getAllContacts()
                 if self.contacts.firstIndex(where: {$0.id == contact.id}) == nil {
-                    
                     // dev code
                     print("Result: \(status). Contact \(contact.firstName) \(contact.lastName) deleted.")
                     self.isLoading = false
                 }
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
+
+    func deleteContact(contact: Contact) {
+        isLoading = true
+        var contactToDelete = contact
+        contactToDelete.deleted = true
+        API().call(endpoint: "contact", method: "POST", payload: contactToDelete) { result in
+            switch result {
+            case .success(let deletedContact):
+                self.getAllContacts()
+                if deletedContact.deleted == true {
+                    // dev code
+                    print("Contact \(contact.firstName) \(contact.lastName) deleted.")
+                }
+                self.isLoading = false
             case .failure(let error):
                 print(error)
                 self.isLoading = false
@@ -113,8 +130,9 @@ struct Contact: Codable, Identifiable {
     var company: String = ""
     var email: String = ""
     var phone: String = ""
-//    var timezone: String = ""
-    //    var isFavorite: Bool = false
+    //    var timezone: String = ""
+    var favorite: Bool = false
+    var deleted: Bool = false
     var instance: String = ""
     
     enum CodingKeys: String, CodingKey {
@@ -125,8 +143,9 @@ struct Contact: Codable, Identifiable {
         case company = "company"
         case email = "email"
         case phone = "phone"
-//        case timezone = "timezone"
-        //        case isFavorite = "isfavorite"
+        //        case timezone = "timezone"
+        case favorite = "favorite"
+        case deleted = "deleted"
         case instance = "instance"
     }
 }

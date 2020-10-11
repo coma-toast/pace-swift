@@ -9,21 +9,38 @@
 import SwiftUI
 
 struct Styling: View {
+//    @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
-        VStack {
-            Text("Styling examples").font(.title)
-            Spacer()
-            Text("Here's an icon example:")
-            NormalIcon(left: "A", right: "4")
-            Spacer()
-            Text("A ButtonStyle:")
-            Button(action: {
-                print("Neumorphic")
-            }, label: {
-                Text("Neumorphic")
-            }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
-            Spacer()
-            Text("Toolbar:")
+        ZStack{
+            VStack {
+                Text("Styling examples").font(.title)
+                Text("Here's an icon example:")
+                NormalIcon(left: "A", right: "4")
+                Text("A ButtonStyle:")
+                Button(action: {
+                    print("Neumorphic")
+                }, label: {
+                    Text("Neumorphic")
+                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+//                Text("Loading screen:")
+//                Button(action: {
+//                    self.contactDatastore.isLoading = true
+//                    sleep(2)
+//                    self.contactDatastore.isLoading = false
+//                }, label: {
+//                    Image(systemName: "timer")
+//                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+                Spacer()
+                Text("Toolbar:")
+            }
+//            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
+//            Text("zstack")
+//            if self.contactDatastore.isLoading {
+//                VStack {
+//                    Text("LOADING TRUE")
+//                    LoadingScreen(isLoading: self.contactDatastore.isLoading)
+//                }
+//            }
         }
         .toolbar(content: {
             ToolbarItem(placement: .bottomBar) {
@@ -88,8 +105,6 @@ struct NeumorphicToolbarButtonStyle: ButtonStyle {
 }
 
 struct NormalIcon: View {
-    //    @Binding var left: String
-    //    @Binding var right: String
     let left: String
     let right: String
     var body: some View {
@@ -107,6 +122,7 @@ struct NormalIcon: View {
     }
 }
 
+// TODO: this still looks weird, revisit this soon.
 struct LoadingScreen: View {
     var isLoading: Bool
     var body: some View {

@@ -13,12 +13,11 @@ struct ContactDetail: View {
     let contact: Binding<Contact>
     var labels: [String] = []
     var data: [String] = []
+    let hiddenFields: [String] = ["instance", "id", "favorite", "deleted"]
     @EnvironmentObject var contactDatastore: ContactStore
     @State var showEditSheet = false
     init(contact: Binding<Contact>) {
         self.contact = contact
-        //        self.labels = labels
-        //        self.data = data
         reflectProperties(contact: contact.wrappedValue)
     }
     
@@ -30,6 +29,7 @@ struct ContactDetail: View {
             //                Text("Edit")
             //            }
             Spacer()
+            
         }
         .navigationBarTitle(contact.wrappedValue.firstName + " " + contact.wrappedValue.lastName)
         .navigationBarItems(trailing: editSheet(showEditSheet: self.$showEditSheet, contact: contact).environmentObject(contactDatastore))
@@ -38,13 +38,15 @@ struct ContactDetail: View {
         let mirror = Mirror(reflecting: contact)
         
         for child in mirror.children {
-            if child.label != Optional("instance"), child.label != Optional("id") {
-                // TODO: get better date formatting.
-//                if child.label == Optional("created") {
-//                    child.value = Text(child.value, style: Text.DateStyle)
-//                }
-                self.labels.append(String.titleCase(child.label ?? "")())
-                self.data.append(child.value as! String)
+            if let currentLabel = child.label {
+                if !hiddenFields.contains(currentLabel) {
+                    // TODO: get better date formatting.
+                    //                if child.label == Optional("created") {
+                    //                    child.value = Text(child.value, style: Text.DateStyle)
+                    //                }
+                    self.labels.append(String.titleCase(child.label ?? "")())
+                    self.data.append(child.value as! String)
+                }
             }
         }
     }
@@ -64,11 +66,11 @@ struct editSheet: View {
                 NavigationView {
                     ContactEdit(showEditSheet: $showEditSheet, contact: contact)
                         .environmentObject(contactDatastore)
-                    
-                
-                
-                .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
-                .navigationBarTitle("Edit")
+
+
+
+                        .navigationBarItems(trailing: Button(action: {self.showEditSheet = false}, label: {Text("Done")}))
+                        .navigationBarTitle("Edit")
                 }
             }
         }

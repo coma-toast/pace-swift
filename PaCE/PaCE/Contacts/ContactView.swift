@@ -11,14 +11,14 @@ import SwiftUI
 struct ContactView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     @State var showAddSheet = false
+    @State var showDeletedContacts = false
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .center) {
                 VStack {
                     List {
-                        ForEach(self.contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in
-                            ContactViewItem(contact: self.$contactDatastore.contacts[index])
+                        ForEach(self.contactDatastore.contacts.indexed(), id: \.1.id) { index, _ in                                 ContactViewItem(contact: self.$contactDatastore.contacts[index])
                         }.onDelete(perform: { indexSet in
                             removeContact(atOffset: indexSet, contactDatastore: self.contactDatastore)
                         })
@@ -63,16 +63,19 @@ struct ContactViewItem: View {
     let contact: Binding<Contact>
     
     var body: some View {
-        NavigationLink(destination: ContactDetail(contact: contact)) {
-            HStack{
-                ContactView.Icon(contact: contact)
-                VStack(alignment: .leading) {
-                    ContactView.FullName(contact: contact)
-                    ContactView.Company(contact: contact).font(.subheadline)
-                }
-                Spacer()
-            }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
-        }.buttonStyle(PlainButtonStyle())
+        if contact.deleted.wrappedValue == false {
+            NavigationLink(destination: ContactDetail(contact: contact)) {
+                HStack{
+                    ContactView.Icon(contact: contact)
+                    VStack(alignment: .leading) {
+                        ContactView.FullName(contact: contact)
+                        ContactView.Company(contact: contact).font(.subheadline)
+                        Text(String(contact.deleted.wrappedValue))
+                    }
+                    Spacer()
+                }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+            }.buttonStyle(PlainButtonStyle())
+        }
     }
 }
 
