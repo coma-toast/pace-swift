@@ -122,6 +122,23 @@ struct NormalIcon: View {
     }
 }
 
+struct SingleIcon: View {
+    let iconString: String
+    var body: some View {
+        ZStack{
+            Rectangle()
+                .fill(Color.gray)
+                .frame(width: 60, height: 60)
+                .shadow(radius: 3)
+            VStack{
+                Text(iconString.prefix(1))
+                    .font(.largeTitle)
+                    .fixedSize(horizontal: false, vertical: false)
+            }
+        }
+    }
+}
+
 // TODO: this still looks weird, revisit this soon.
 struct LoadingScreen: View {
     var isLoading: Bool

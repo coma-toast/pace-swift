@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ProjectView: View {
     @EnvironmentObject var projectDatastore: ProjectStore
+    @State var showAddSheet = false
+    @State var showDeleted = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -18,7 +20,9 @@ struct ProjectView: View {
                     List {
                         ForEach(self.projectDatastore.projects.indexed(), id: \.1.id) { index, _ in
                             ProjectViewItem(project: self.$projectDatastore.projects[index])
-                        }
+                        }.onDelete(perform: { indexSet in
+                            removeProject(atOffset: indexSet, projectDatastore: self.projectDatastore)
+                        })
                     }
                     
                 }.blur(radius: self.projectDatastore.isLoading ? 3 : 0)
@@ -26,8 +30,32 @@ struct ProjectView: View {
                     ProjectLoadingView()
                 }
                 Spacer()
-            }.navigationBarTitle("Projects")
+            }
+            .navigationBarTitle("Projects")
+            .navigationBarItems(trailing:
+                                    HStack {
+                                        Button(action: {
+                                            self.showAddSheet.toggle()
+                                        }) {
+                                            Image(systemName: "plus")
+                                        }.sheet(isPresented: $showAddSheet) {
+                                            ProjectAdd(showAddSheet: $showAddSheet).environmentObject(projectDatastore)
+                                        }
+
+                                        Button(action: {
+                                            self.projectDatastore.getAllContacts()
+                                        }) {
+                                            Image(systemName: "arrow.clockwise")
+                                        }
+                                    })
         }
+    }
+}
+
+func removeProject(atOffset: IndexSet, projectDatastore: ProjectStore) {
+    let tempProjects = projectDatastore.contacts
+    atOffset.forEach { (i) in
+        projectDatastore.deleteProject(contact: tempProjects[i])
     }
 }
 
@@ -36,21 +64,18 @@ struct ProjectViewItem: View {
     let project: Binding<Project>
     
     var body: some View {
-        NavigationLink(destination: ProjectDetail(project: project)) {
-            HStack{
-                ProjectView.Icon(project: project)
-                VStack(alignment: .leading) {
-                    Text(project.name.wrappedValue)
-                    Text(project.clientName.wrappedValue).font(.subheadline)
-                }
-                Spacer()
-            }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
-        }.buttonStyle(PlainButtonStyle())
-            .navigationBarItems(trailing:
-                Button("Refresh") {
-                    self.projectDatastore.getAllProjects()
-                }
-        )
+        if project.deleted.wrappedValue == false {
+            NavigationLink(destination: ProjectDetail(project: project)) {
+                HStack{
+                    ProjectView.Icon(project: project)
+                    VStack(alignment: .leading) {
+                        Text(project.name.wrappedValue)
+                        Text(project.clientName.wrappedValue).font(.subheadline)
+                    }
+                    Spacer()
+                }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+            }.buttonStyle(PlainButtonStyle())
+        }
     }
 }
 
@@ -58,19 +83,7 @@ extension ProjectView {
     struct Icon: View {
         @Binding var project: Project
         var body: some View {
-            ZStack{
-                Rectangle()
-                    .fill(Color.gray)
-                    .frame(width: 60, height: 60)
-                    .shadow(radius: 3)
-                
-                VStack{
-                    Text(project.name.prefix(1))
-                        .font(.largeTitle)
-                        .fixedSize(horizontal: false, vertical: false)
-                    
-                }
-            }
+            SingleIcon(iconString: project.name)
         }
     }
 }
@@ -78,23 +91,7 @@ extension ProjectView {
 struct ProjectLoadingView: View {
     @EnvironmentObject var projectDatastore: ProjectStore
     var body: some View {
-//        NavigationView {
-            GeometryReader { geometry in
-                VStack {
-                    Text("Loading").disabled(self.projectDatastore.isLoading)
-                    if #available(iOS 14.0, *) {
-                        ProgressView()
-                    } else {
-                        Text("...")
-                    }
-                }.frame(width: geometry.size.width / 2,
-                        height: geometry.size.height / 5)
-                    .background(Color.secondary.colorInvert())
-                    .foregroundColor(Color.primary)
-                    .cornerRadius(20)
-                    .opacity(self.projectDatastore.isLoading ? 1 : 0)
-            }.background(Color.blue.opacity(0.5))
-//        }
+        LoadingScreen(isLoading: self.projectDatastore.isLoading)
     }
 }
 

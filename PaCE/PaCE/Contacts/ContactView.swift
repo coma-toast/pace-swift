@@ -11,7 +11,7 @@ import SwiftUI
 struct ContactView: View {
     @EnvironmentObject var contactDatastore: ContactStore
     @State var showAddSheet = false
-    @State var showDeletedContacts = false
+    @State var showDeleted = false
     
     var body: some View {
         GeometryReader { geometry in

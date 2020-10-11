@@ -53,11 +53,69 @@ final class ProjectStore: ObservableObject {
             }
         }
     }
+
+    func addProject(project: Project) {
+        isLoading = true
+        API().call(endpoint: "project", method: "PUT", payload: project) { result in
+            switch result {
+            case .success(let updatedProject):
+                self.getAllProjects()
+                if self.projects.firstIndex(where: {$0.id == updatedProject.id}) != nil {
+
+                    // dev code
+                    print("Project \(updatedProject.name) added.")
+                    self.isLoading = false
+                }
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
+
+    func deleteProjectPermanently(project: Project) {
+        isLoading = true
+        API().call(endpoint: "project", method: "DELETE", payload: project) { result in
+            switch result {
+            case .success(let status):
+                self.getAllProjects()
+                if self.projects.firstIndex(where: {$0.id == project.id}) == nil {
+                    // dev code
+                    print("Result: \(status). Project \(project.name) deleted.")
+                    self.isLoading = false
+                }
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
+
+    func deleteProject(project: Project) {
+        isLoading = true
+        var projectToDelete = project
+        projectToDelete.deleted = true
+        API().call(endpoint: "project", method: "POST", payload: projectToDelete) { result in
+            switch result {
+            case .success(let deletedProject):
+                self.getAllProjects()
+                if deletedProject.deleted == true {
+                    // dev code
+                    print("Project \(project.name) deleted.")
+                }
+                self.isLoading = false
+            case .failure(let error):
+                print(error)
+                self.isLoading = false
+            }
+        }
+    }
 }
 
 struct Project: Codable, Identifiable {
     var id: String = ""
     var created: String = ""
+    var deleted: Bool = false
     var name: String = ""
     var startDate: String = ""
     var dueDate: String = ""
@@ -82,6 +140,7 @@ struct Project: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case created = "created"
+        case deleted = "deleted"
         case name = "name"
         case startDate = "startDate"
         case dueDate = "dueDate"

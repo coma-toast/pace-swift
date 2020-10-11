@@ -24,6 +24,7 @@
 		AC464E3424E4C25900A266A0 /* PaCETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3324E4C25900A266A0 /* PaCETests.swift */; };
 		AC464E3F24E4C25900A266A0 /* PaCEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */; };
 		AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E4C24E5D21A00A266A0 /* PaceImage.swift */; };
+		AC5D85DC25329C9500C14D77 /* ProjectAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D85DB25329C9500C14D77 /* ProjectAdd.swift */; };
 		AC7FBB0E251C39BE00DA2905 /* ProjectEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FBB0D251C39BE00DA2905 /* ProjectEdit.swift */; };
 		AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55DF24EF0878003A420D /* APIClient2.swift */; };
 		AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55E124F1A4EB003A420D /* ContactDetail.swift */; };
@@ -78,6 +79,7 @@
 		AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaCEUITests.swift; sourceTree = "<group>"; };
 		AC464E4024E4C25900A266A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC464E4C24E5D21A00A266A0 /* PaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaceImage.swift; sourceTree = "<group>"; };
+		AC5D85DB25329C9500C14D77 /* ProjectAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAdd.swift; sourceTree = "<group>"; };
 		AC7FBB0D251C39BE00DA2905 /* ProjectEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEdit.swift; sourceTree = "<group>"; };
 		AC9D55DF24EF0878003A420D /* APIClient2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
 		AC9D55E124F1A4EB003A420D /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				AC9D55E624F33EBB003A420D /* ProjectView.swift */,
 				AC9D55EA24F344F6003A420D /* ProjectDetail.swift */,
 				AC7FBB0D251C39BE00DA2905 /* ProjectEdit.swift */,
+				AC5D85DB25329C9500C14D77 /* ProjectAdd.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */,
 				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
 				AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */,
+				AC5D85DC25329C9500C14D77 /* ProjectAdd.swift in Sources */,
 				AC9D55E424F33C1F003A420D /* Project.swift in Sources */,
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
 				AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */,
