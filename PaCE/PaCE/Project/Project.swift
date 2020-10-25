@@ -114,11 +114,11 @@ final class ProjectStore: ObservableObject {
 
 struct Project: Codable, Identifiable {
     var id: String = ""
-    var created: String = ""
+    var created: Date = Date()
     var deleted: Bool = false
     var name: String = ""
-    var startDate: String = ""
-    var dueDate: String = ""
+    var startDate: Date = Date()
+    var dueDate: Date = Date()
     var address: String = ""
     var city: String = ""
     var state: String = ""

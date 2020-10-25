@@ -45,6 +45,11 @@ final class ContactStore: ObservableObject {
             }
         }
     }
+
+    // TODO: I am here. start building out Company, then make this function, then finish ProjectAdd so I can link a company
+    func getContactsByCompany(company: Company) {
+        // TODO: this
+    }
     
     func updateContact(contact: Contact) {
         isLoading = true

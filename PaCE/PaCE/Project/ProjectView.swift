@@ -43,7 +43,7 @@ struct ProjectView: View {
                                         }
 
                                         Button(action: {
-                                            self.projectDatastore.getAllContacts()
+                                            self.projectDatastore.getAllProjects()
                                         }) {
                                             Image(systemName: "arrow.clockwise")
                                         }
@@ -53,9 +53,9 @@ struct ProjectView: View {
 }
 
 func removeProject(atOffset: IndexSet, projectDatastore: ProjectStore) {
-    let tempProjects = projectDatastore.contacts
+    let tempProjects = projectDatastore.projects
     atOffset.forEach { (i) in
-        projectDatastore.deleteProject(contact: tempProjects[i])
+        projectDatastore.deleteProject(project: tempProjects[i])
     }
 }
 

@@ -39,7 +39,7 @@ struct ContactEdit: View {
                         Text("Phone").bold()
                         TextField("Phone", text: $contact.phone).font(.body)
                     }
-                    // Not sure if we want to include this info
+                    // TODO: Not sure if we want to include this info
 //                    HStack {
 //                        Text("Timezome").bold()
 //                        TextField("Timezone", text: $contact.timezone).font(.body)
@@ -47,7 +47,6 @@ struct ContactEdit: View {
                 }
                 Spacer()
             }
-            .background(Color.red) // dev code
             .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
             .toolbar(content: {
                 ToolbarItem(placement: .bottomBar) {

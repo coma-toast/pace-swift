@@ -32,7 +32,7 @@ struct ContactDetail: View {
             
         }
         .navigationBarTitle(contact.wrappedValue.firstName + " " + contact.wrappedValue.lastName)
-        .navigationBarItems(trailing: editSheet(showEditSheet: self.$showEditSheet, contact: contact).environmentObject(contactDatastore))
+        .navigationBarItems(trailing: editContactSheet(showEditSheet: self.$showEditSheet, contact: contact).environmentObject(contactDatastore))
     }
     mutating func reflectProperties(contact: Contact) {
         let mirror = Mirror(reflecting: contact)
@@ -52,7 +52,7 @@ struct ContactDetail: View {
     }
 }
 
-struct editSheet: View {
+struct editContactSheet: View {
     @Binding var showEditSheet: Bool
     @Binding var contact: Contact
     @EnvironmentObject var contactDatastore: ContactStore

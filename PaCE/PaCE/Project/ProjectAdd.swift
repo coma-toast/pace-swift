@@ -21,85 +21,65 @@ struct ProjectAdd: View {
                     // TODO: EditView(labels: labels, data: data)
                     // TODO: Form validation (not empty fields)
                     Form {
-                        FormItem(title: "Name", inputField: $project.name)
-                        HStack {
-                            Text("Client").bold()
-                            // TODO: client picker once getCompanies() works
-                            TextField("Client", text: $project.clientName).font(.body)
-                        }
-                        HStack {
-                            Text("Address").bold()
-                            TextField("Address", text: $project.address).font(.body)
-                        }
-                        HStack {
-                            Text("City").bold()
-                            TextField("City", text: $project.city).font(.body)
-                        }
-                        HStack {
-                            Text("State").bold()
-                            TextField("State", text: $project.state).font(.body)
-                        }
-//                        HStack {
-//                            Text("Zip Code").bold()
-//                            TextField("Zip Code", text: $project.zip).font(.body)
-//                        }
-//                        HStack {
-//                            Text("Project Manager").bold()
-//                            TextField("Project Manager", text: $project.projectManager).font(.body)
-//                        }HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }
-//                        HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }
-//                        HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }
-//                        HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }
-//                        HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }
-//                        HStack {
-//                            Text("").bold()
-//                            TextField("", text: $project.).font(.body)
-//                        }                        }
-                    }
-                    Spacer()
-                }
-                .blur(radius: self.projectDatastore.isLoading ? 3 : 0)
+                        FormItemText(title: "Name", inputField: $project.name)
+                        FormItemText(title: "Client", inputField: $project.clientName)
+                        FormItemText(title: "Address", inputField: $project.address)
+                        FormItemText(title: "City", inputField: $project.city)
+                        FormItemText(title: "State", inputField: $project.state)
+                        FormItemNumber(title: "Zip Code", inputField: $project.zip)
+                        FormItemContact(title: "Project Manager", inputField: $project.projectManager)
 
-                if self.projectDatastore.isLoading {
-                    ProjectLoadingView()
+                        FormItemDate(title: "Start Date" , inputField: $project.startDate)
+
+
+                        FormItemDate(title: "Due Date", inputField: $project.dueDate)
+
+
+                        //                    FormItemDate(title: "", inputField: $project.)
+                        //
+                        //
+                        //                    FormItem(title: "", inputField: $project.)
+                        //
+                        //
+                        //                    FormItem(title: "", inputField: $project.)
+                        //
+                        //
+                        //                    FormItem(title: "", inputField: $project.)
+
+
+
+                        Spacer()
+                    }
+                    .blur(radius: self.projectDatastore.isLoading ? 3 : 0)
+
+                    if self.projectDatastore.isLoading {
+                        ProjectLoadingView()
+                    }
                 }
+                .navigationBarTitle(Text("Add Project"), displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
+                .toolbar(content: {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Reset") {
+                            self.project = Project()
+                        }
+                    }
+                    ToolbarItem(placement: .bottomBar) {
+                        Spacer()
+                    }
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Submit") {
+                            self.projectDatastore.addProject(project: self.project)
+                            self.showAddSheet = false
+                        }
+                    }
+                })
             }
-            .navigationBarTitle(Text("Add Project"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
-            .toolbar(content: {
-                ToolbarItem(placement: .bottomBar) {
-                    Button("Reset") {
-                        self.project = Project()
-                    }
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Button("Submit") {
-                        self.projectDatastore.addProject(project: self.project)
-                        self.showAddSheet = false
-                    }
-                }
-            })
         }
     }
-struct FormItem: View {
+}
+
+struct FormItemText: View {
     var title: String
     @Binding var inputField: String
     var body: some View {
@@ -109,6 +89,42 @@ struct FormItem: View {
         }
     }
 }
+
+struct FormItemNumber: View {
+    var title: String
+    @Binding var inputField: Int
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
+        }
+    }
+}
+
+struct FormItemDate: View {
+    var title: String
+    @Binding var inputField: Date
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            DatePicker(title, selection: $inputField)
+        }
+    }
+}
+
+struct FormItemContact: View {
+    var title: String
+    // TODO: getContactsByCompany(company:
+    var contact: Contact = Contact()
+    @Binding var inputField: String
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            TextField(title, text: $inputField).font(.body)
+        }
+    }
+}
+
 
 //struct ProjectAdd_Previews: PreviewProvider {
 //    static var previews: some View {

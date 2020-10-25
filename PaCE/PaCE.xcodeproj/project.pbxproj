@@ -25,6 +25,7 @@
 		AC464E3F24E4C25900A266A0 /* PaCEUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E3E24E4C25900A266A0 /* PaCEUITests.swift */; };
 		AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC464E4C24E5D21A00A266A0 /* PaceImage.swift */; };
 		AC5D85DC25329C9500C14D77 /* ProjectAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D85DB25329C9500C14D77 /* ProjectAdd.swift */; };
+		AC5D85E725350B6700C14D77 /* ExtendedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D85E625350B6700C14D77 /* ExtendedDetailView.swift */; };
 		AC7FBB0E251C39BE00DA2905 /* ProjectEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7FBB0D251C39BE00DA2905 /* ProjectEdit.swift */; };
 		AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55DF24EF0878003A420D /* APIClient2.swift */; };
 		AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55E124F1A4EB003A420D /* ContactDetail.swift */; };
@@ -80,6 +81,7 @@
 		AC464E4024E4C25900A266A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC464E4C24E5D21A00A266A0 /* PaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaceImage.swift; sourceTree = "<group>"; };
 		AC5D85DB25329C9500C14D77 /* ProjectAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAdd.swift; sourceTree = "<group>"; };
+		AC5D85E625350B6700C14D77 /* ExtendedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedDetailView.swift; sourceTree = "<group>"; };
 		AC7FBB0D251C39BE00DA2905 /* ProjectEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEdit.swift; sourceTree = "<group>"; };
 		AC9D55DF24EF0878003A420D /* APIClient2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient2.swift; sourceTree = "<group>"; };
 		AC9D55E124F1A4EB003A420D /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				AC30FCB924E728D200488A4D /* Project */,
 				AC464E1C24E4C25700A266A0 /* AppDelegate.swift */,
 				ACC8AAA824F75CF200CC99A5 /* DetailView.swift */,
+				AC5D85E625350B6700C14D77 /* ExtendedDetailView.swift */,
 				AC9EF33D250853DF00CFCDC9 /* EditView.swift */,
 				AC464E1E24E4C25700A266A0 /* SceneDelegate.swift */,
 				AC464E2024E4C25700A266A0 /* ContentView.swift */,
@@ -355,6 +358,7 @@
 				AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */,
 				AC9D55E924F34005003A420D /* ProjectViewModel.swift in Sources */,
 				AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */,
+				AC5D85E725350B6700C14D77 /* ExtendedDetailView.swift in Sources */,
 				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
 				AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */,
 				AC5D85DC25329C9500C14D77 /* ProjectAdd.swift in Sources */,
