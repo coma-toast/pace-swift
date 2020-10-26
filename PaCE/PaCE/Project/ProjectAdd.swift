@@ -79,38 +79,7 @@ struct ProjectAdd: View {
     }
 }
 
-struct FormItemText: View {
-    var title: String
-    @Binding var inputField: String
-    var body: some View {
-        HStack {
-            Text(title).bold()
-            TextField(title, text: $inputField).font(.body)
-        }
-    }
-}
 
-struct FormItemNumber: View {
-    var title: String
-    @Binding var inputField: Int
-    var body: some View {
-        HStack {
-            Text(title).bold()
-            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
-        }
-    }
-}
-
-struct FormItemDate: View {
-    var title: String
-    @Binding var inputField: Date
-    var body: some View {
-        HStack {
-            Text(title).bold()
-            DatePicker(title, selection: $inputField)
-        }
-    }
-}
 
 struct FormItemContact: View {
     var title: String

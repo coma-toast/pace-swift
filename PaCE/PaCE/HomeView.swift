@@ -17,22 +17,24 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    NavigationLink(destination: ContactView()) {
-                        
-                        Image("contact")
-                            .resizable()
-                            .frame(width: 40, height: 40, alignment: .leading)
-                            .cornerRadius(10)
-                        Spacer()
-                        Text("Contacts").font(.title).foregroundColor(.black)
-                    }
-                    .padding()
-                    .background(Color(red: 0.8, green: 0.8, blue: 0.8))
-                    .cornerRadius(15)
-                    .shadow(color: Color.black, radius: 5, x:3, y:3)
+                NavButton(destination: () -> ContactView.Type, image: "contact", text: "Contacts")
+//                HStack {
+
+//                    NavigationLink(destination: ContactView()) {
+//
+//                        Image("contact")
+//                            .resizable()
+//                            .frame(width: 40, height: 40, alignment: .leading)
+//                            .cornerRadius(10)
+//                        Spacer()
+//                        Text("Contacts").font(.title).foregroundColor(.black)
+//
+//                    .padding()
+//                    .cornerRadius(15)
+//                    .shadow(color: Color.black, radius: 5, x:3, y:3)
                     //                .border(Color(red: 0.8, green: 0.8, blue: 0.8), width: 1)
-                }
+//                    }
+//                }
                 
                 HStack {
                     NavigationLink(destination: ProjectView()) {

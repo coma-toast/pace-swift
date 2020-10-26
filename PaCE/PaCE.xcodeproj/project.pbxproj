@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC095EBD2520B171005A1286 /* ContactAdd.swift */; };
 		AC095EC92520E09E005A1286 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC095EC82520E09E005A1286 /* Styling.swift */; };
+		AC1DA3DE254651A6006A8106 /* CompanyAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3DD254651A6006A8106 /* CompanyAdd.swift */; };
+		AC1DA3E325465828006A8106 /* CompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3E225465828006A8106 /* CompanyDetail.swift */; };
+		AC1DA3E82546599D006A8106 /* CompanyEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3E72546599D006A8106 /* CompanyEdit.swift */; };
 		AC30FCB624E7277100488A4D /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB524E7277100488A4D /* ContactView.swift */; };
 		AC30FCB824E728C800488A4D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB724E728C800488A4D /* Contact.swift */; };
 		AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCBA24E72B8800488A4D /* ContactResponse.swift */; };
@@ -35,6 +38,8 @@
 		AC9D55EB24F344F6003A420D /* ProjectDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9D55EA24F344F6003A420D /* ProjectDetail.swift */; };
 		AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */; };
 		AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9EF33D250853DF00CFCDC9 /* EditView.swift */; };
+		ACAAC42425464D59003B9810 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAAC42325464D59003B9810 /* Company.swift */; };
+		ACAAC42C25464FEF003B9810 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAAC42B25464FEF003B9810 /* CompanyView.swift */; };
 		ACC8AAA924F75CF200CC99A5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8AAA824F75CF200CC99A5 /* DetailView.swift */; };
 		ACF7858924E614F500B4F750 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF7858824E614F500B4F750 /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +64,9 @@
 /* Begin PBXFileReference section */
 		AC095EBD2520B171005A1286 /* ContactAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAdd.swift; sourceTree = "<group>"; };
 		AC095EC82520E09E005A1286 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		AC1DA3DD254651A6006A8106 /* CompanyAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAdd.swift; sourceTree = "<group>"; };
+		AC1DA3E225465828006A8106 /* CompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetail.swift; sourceTree = "<group>"; };
+		AC1DA3E72546599D006A8106 /* CompanyEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyEdit.swift; sourceTree = "<group>"; };
 		AC30FCB524E7277100488A4D /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		AC30FCB724E728C800488A4D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AC30FCBA24E72B8800488A4D /* ContactResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResponse.swift; sourceTree = "<group>"; };
@@ -91,6 +99,8 @@
 		AC9D55EA24F344F6003A420D /* ProjectDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetail.swift; sourceTree = "<group>"; };
 		AC9EF33B250850A500CFCDC9 /* ContactEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEdit.swift; sourceTree = "<group>"; };
 		AC9EF33D250853DF00CFCDC9 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		ACAAC42325464D59003B9810 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		ACAAC42B25464FEF003B9810 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
 		ACC8AAA824F75CF200CC99A5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		ACF7858824E614F500B4F750 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +166,7 @@
 		AC464E1B24E4C25700A266A0 /* PaCE */ = {
 			isa = PBXGroup;
 			children = (
+				ACAAC42225464D48003B9810 /* Company */,
 				ACC8AAA724F59D8F00CC99A5 /* Contacts */,
 				AC30FCB924E728D200488A4D /* Project */,
 				AC464E1C24E4C25700A266A0 /* AppDelegate.swift */,
@@ -202,6 +213,18 @@
 				AC464E4024E4C25900A266A0 /* Info.plist */,
 			);
 			path = PaCEUITests;
+			sourceTree = "<group>";
+		};
+		ACAAC42225464D48003B9810 /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				ACAAC42325464D59003B9810 /* Company.swift */,
+				ACAAC42B25464FEF003B9810 /* CompanyView.swift */,
+				AC1DA3DD254651A6006A8106 /* CompanyAdd.swift */,
+				AC1DA3E225465828006A8106 /* CompanyDetail.swift */,
+				AC1DA3E72546599D006A8106 /* CompanyEdit.swift */,
+			);
+			path = Company;
 			sourceTree = "<group>";
 		};
 		ACC8AAA724F59D8F00CC99A5 /* Contacts */ = {
@@ -354,26 +377,31 @@
 				AC9D55EB24F344F6003A420D /* ProjectDetail.swift in Sources */,
 				AC30FCC124E72F8D00488A4D /* DB.swift in Sources */,
 				AC9D55E024EF0878003A420D /* APIClient2.swift in Sources */,
+				AC1DA3E82546599D006A8106 /* CompanyEdit.swift in Sources */,
 				AC30FCB624E7277100488A4D /* ContactView.swift in Sources */,
 				AC9EF33E250853DF00CFCDC9 /* EditView.swift in Sources */,
 				AC9D55E924F34005003A420D /* ProjectViewModel.swift in Sources */,
 				AC095EBE2520B171005A1286 /* ContactAdd.swift in Sources */,
 				AC5D85E725350B6700C14D77 /* ExtendedDetailView.swift in Sources */,
 				AC9D55E224F1A4EB003A420D /* ContactDetail.swift in Sources */,
+				ACAAC42425464D59003B9810 /* Company.swift in Sources */,
 				AC9EF33C250850A500CFCDC9 /* ContactEdit.swift in Sources */,
 				AC5D85DC25329C9500C14D77 /* ProjectAdd.swift in Sources */,
 				AC9D55E424F33C1F003A420D /* Project.swift in Sources */,
 				AC464E1F24E4C25700A266A0 /* SceneDelegate.swift in Sources */,
 				AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */,
+				ACAAC42C25464FEF003B9810 /* CompanyView.swift in Sources */,
 				AC464E4D24E5D21A00A266A0 /* PaceImage.swift in Sources */,
 				AC095EC92520E09E005A1286 /* Styling.swift in Sources */,
 				ACF7858924E614F500B4F750 /* HomeView.swift in Sources */,
 				AC464E2124E4C25700A266A0 /* ContentView.swift in Sources */,
 				AC30FCBF24E72DDF00488A4D /* ContactViewModel.swift in Sources */,
+				AC1DA3E325465828006A8106 /* CompanyDetail.swift in Sources */,
 				AC9D55E724F33EBB003A420D /* ProjectView.swift in Sources */,
 				AC30FCB824E728C800488A4D /* Contact.swift in Sources */,
 				AC30FCBD24E72D4B00488A4D /* APIClient.swift in Sources */,
 				AC7FBB0E251C39BE00DA2905 /* ProjectEdit.swift in Sources */,
+				AC1DA3DE254651A6006A8106 /* CompanyAdd.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

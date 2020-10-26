@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Styling: View {
-//    @EnvironmentObject var contactDatastore: ContactStore
+    //    @EnvironmentObject var contactDatastore: ContactStore
     var body: some View {
         ZStack{
             VStack {
@@ -22,25 +22,25 @@ struct Styling: View {
                 }, label: {
                     Text("Neumorphic")
                 }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
-//                Text("Loading screen:")
-//                Button(action: {
-//                    self.contactDatastore.isLoading = true
-//                    sleep(2)
-//                    self.contactDatastore.isLoading = false
-//                }, label: {
-//                    Image(systemName: "timer")
-//                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+                //                Text("Loading screen:")
+                //                Button(action: {
+                //                    self.contactDatastore.isLoading = true
+                //                    sleep(2)
+                //                    self.contactDatastore.isLoading = false
+                //                }, label: {
+                //                    Image(systemName: "timer")
+                //                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
                 Spacer()
                 Text("Toolbar:")
             }
-//            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
-//            Text("zstack")
-//            if self.contactDatastore.isLoading {
-//                VStack {
-//                    Text("LOADING TRUE")
-//                    LoadingScreen(isLoading: self.contactDatastore.isLoading)
-//                }
-//            }
+            //            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
+            //            Text("zstack")
+            //            if self.contactDatastore.isLoading {
+            //                VStack {
+            //                    Text("LOADING TRUE")
+            //                    LoadingScreen(isLoading: self.contactDatastore.isLoading)
+            //                }
+            //            }
         }
         .toolbar(content: {
             ToolbarItem(placement: .bottomBar) {
@@ -104,6 +104,40 @@ struct NeumorphicToolbarButtonStyle: ButtonStyle {
     }
 }
 
+/*
+ # Navigation list
+ */
+struct NavButton<Destination: View>: View {
+    let destination: Destination
+    let image: String
+    let text: String
+
+    init(@ViewBuilder destination: @escaping () -> Destination, image: String, text: String) {
+        self.destination = destination()
+        self.image = image
+        self.text = text
+    }
+
+    var body: some View {
+        HStack {
+            Image(image)
+                .resizable()
+                .frame(width: 40, height: 40, alignment: .leading)
+                .cornerRadius(10)
+            Spacer()
+            Text(text).font(.title).foregroundColor(.black)
+        }
+        .padding()
+        .background(Color(red: 0.8, green: 0.8, blue: 0.8))
+        .cornerRadius(15)
+        .shadow(color: Color.black, radius: 5, x:3, y:3)
+    }
+}
+
+/*
+ # Icons
+ */
+
 struct NormalIcon: View {
     let left: String
     let right: String
@@ -135,6 +169,43 @@ struct SingleIcon: View {
                     .font(.largeTitle)
                     .fixedSize(horizontal: false, vertical: false)
             }
+        }
+    }
+}
+
+/*
+ # Form styling
+ */
+
+struct FormItemText: View {
+    var title: String
+    @Binding var inputField: String
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            TextField(title, text: $inputField).font(.body)
+        }
+    }
+}
+
+struct FormItemNumber: View {
+    var title: String
+    @Binding var inputField: Int
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
+        }
+    }
+}
+
+struct FormItemDate: View {
+    var title: String
+    @Binding var inputField: Date
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            DatePicker(title, selection: $inputField)
         }
     }
 }
