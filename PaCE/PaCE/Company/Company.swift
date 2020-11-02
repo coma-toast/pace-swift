@@ -119,7 +119,7 @@ final class CompanyStore: ObservableObject {
     }
 }
 
-struct Company: Codable, Identifiable {
+struct Company: Codable, Identifiable, Hashable {
     var id: String = ""
     var created: Date = Date()
     var name: String = ""
@@ -129,12 +129,13 @@ struct Company: Codable, Identifiable {
     var address: String = ""
     var city: String = ""
     var state: String = ""
-    var zip: Int = 0
+    var zip: String = ""
     var favorite: Bool = false
     var deleted: Bool = false
     var instance: String = ""
 
     enum CodingKeys: String, CodingKey {
+        case id = "id"
         case name = "name"
         case primaryContact = "primaryContact"
         case phone = "phone"

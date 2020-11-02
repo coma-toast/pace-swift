@@ -12,6 +12,7 @@
 		AC1DA3DE254651A6006A8106 /* CompanyAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3DD254651A6006A8106 /* CompanyAdd.swift */; };
 		AC1DA3E325465828006A8106 /* CompanyDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3E225465828006A8106 /* CompanyDetail.swift */; };
 		AC1DA3E82546599D006A8106 /* CompanyEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3E72546599D006A8106 /* CompanyEdit.swift */; };
+		AC1DA3F6254EEC5A006A8106 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1DA3F5254EEC5A006A8106 /* SettingsView.swift */; };
 		AC30FCB624E7277100488A4D /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB524E7277100488A4D /* ContactView.swift */; };
 		AC30FCB824E728C800488A4D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCB724E728C800488A4D /* Contact.swift */; };
 		AC30FCBB24E72B8800488A4D /* ContactResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC30FCBA24E72B8800488A4D /* ContactResponse.swift */; };
@@ -67,6 +68,7 @@
 		AC1DA3DD254651A6006A8106 /* CompanyAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAdd.swift; sourceTree = "<group>"; };
 		AC1DA3E225465828006A8106 /* CompanyDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyDetail.swift; sourceTree = "<group>"; };
 		AC1DA3E72546599D006A8106 /* CompanyEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyEdit.swift; sourceTree = "<group>"; };
+		AC1DA3F5254EEC5A006A8106 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AC30FCB524E7277100488A4D /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		AC30FCB724E728C800488A4D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		AC30FCBA24E72B8800488A4D /* ContactResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResponse.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				AC464E2A24E4C25900A266A0 /* Info.plist */,
 				AC464E2424E4C25900A266A0 /* Preview Content */,
 				ACF7858824E614F500B4F750 /* HomeView.swift */,
+				AC1DA3F5254EEC5A006A8106 /* SettingsView.swift */,
 				AC095EC82520E09E005A1286 /* Styling.swift */,
 				AC30FCC024E72F8D00488A4D /* DB.swift */,
 				AC30FCBC24E72D4B00488A4D /* APIClient.swift */,
@@ -401,6 +404,7 @@
 				AC30FCB824E728C800488A4D /* Contact.swift in Sources */,
 				AC30FCBD24E72D4B00488A4D /* APIClient.swift in Sources */,
 				AC7FBB0E251C39BE00DA2905 /* ProjectEdit.swift in Sources */,
+				AC1DA3F6254EEC5A006A8106 /* SettingsView.swift in Sources */,
 				AC1DA3DE254651A6006A8106 /* CompanyAdd.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,7 @@ struct CompanyEdit: View {
             VStack {
                 // TODO: EditView(labels: labels, data: data)
                 Form {
+                    FormItemText(title: "ID", inputField: $company.id)
                     FormItemText(title: "Name", inputField: $company.name)
                     FormItemText(title: "PrimaryContact", inputField: $company.primaryContact)
                     FormItemText(title: "Phone", inputField: $company.phone)
@@ -26,7 +27,7 @@ struct CompanyEdit: View {
                     FormItemText(title: "Address", inputField: $company.address)
                     FormItemText(title: "City", inputField: $company.city)
                     FormItemText(title: "State", inputField: $company.state)
-                    FormItemNumber(title: "Zip", inputField: $company.zip)
+                    FormItemNumberString(title: "Zip", inputField: $company.zip)
                 }
                 Spacer()
             }

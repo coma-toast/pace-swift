@@ -10,13 +10,26 @@ import SwiftUI
 
 struct Styling: View {
     //    @EnvironmentObject var contactDatastore: ContactStore
+    @State var date = Date()
     var body: some View {
-        ZStack{
+        VStack{
             VStack {
-                Text("Styling examples").font(.title)
-                Text("Here's an icon example:")
+                HStack {
+                    Text("Styling examples").font(.title)
+                    Spacer()
+                }
+                HStack {
+                    Text("Here are icon examples:")
+                    Spacer()
+                }
                 NormalIcon(left: "A", right: "4")
-                Text("A ButtonStyle:")
+                SingleIcon(iconString: "Test")
+            }
+            VStack {
+                HStack {
+                    Text("Button Styles:")
+                    Spacer()
+                }
                 Button(action: {
                     print("Neumorphic")
                 }, label: {
@@ -30,6 +43,16 @@ struct Styling: View {
                 //                }, label: {
                 //                    Image(systemName: "timer")
                 //                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+            }
+            VStack {
+                HStack {
+                    Text("Form Items:")
+                    Spacer()
+                }
+                FormItemText(title: "Title", inputField: .constant("String"))
+                FormItemDate(title: "Date", inputField: $date)
+                FormItemNumber(title: "Quantity", inputField: .constant(3))
+                FormItemNumberString(title: "Zip Code", inputField: .constant("90210"))
                 Spacer()
                 Text("Toolbar:")
             }
@@ -199,13 +222,53 @@ struct FormItemNumber: View {
     }
 }
 
+struct FormItemNumberString: View {
+    var title: String
+    @Binding var inputField: String
+    var body: some View {
+        HStack {
+            Text(title).bold()
+            TextField(title, text: $inputField).font(.body)
+            // TODO: should it be an int? string of numbers doesn't seem to work?
+//            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
+        }
+    }
+}
+
 struct FormItemDate: View {
     var title: String
     @Binding var inputField: Date
     var body: some View {
         HStack {
             Text(title).bold()
-            DatePicker(title, selection: $inputField)
+            DatePicker("", selection: $inputField)
+            Spacer()
+        }
+    }
+}
+
+struct FormFavorite: View {
+    @Binding var favorite: Bool
+    var body: some View {
+        HStack {
+            Text("Favorite").bold()
+            Image(systemName: "star")
+        }
+    }
+}
+
+
+struct FormCompanyPicker: View {
+    @EnvironmentObject var companyDatastore: CompanyStore
+    @Binding var inputField: Company
+    var body: some View {
+        HStack {
+            Picker("Company", selection: $inputField) {
+                ForEach(Array(arrayLiteral: companyDatastore.$companies), id: \.self) {
+                    company in
+                    Text(company.name)
+                }
+            }
         }
     }
 }

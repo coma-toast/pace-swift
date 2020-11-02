@@ -21,26 +21,12 @@ struct ContactAdd: View {
                     // TODO: EditView(labels: labels, data: data)
                     // TODO: Form validation (not empty fields)
                     Form {
-                        HStack {
-                            Text("First Name").bold()
-                            TextField("First Name", text: $contact.firstName).font(.body)
-                        }
-                        HStack {
-                            Text("Last Name").bold()
-                            TextField("Last Name", text: $contact.lastName).font(.body)
-                        }
-                        HStack {
-                            Text("Company").bold()
-                            TextField("Company", text: $contact.company).font(.body)
-                        }
-                        HStack {
-                            Text("Email").bold()
-                            TextField("Email", text: $contact.email).font(.body)
-                        }
-                        HStack {
-                            Text("Phone").bold()
-                            TextField("Phone", text: $contact.phone).font(.body)
-                        }
+                        FormItemText(title:"First Name", inputField: $contact.firstName)
+                        FormItemText(title:"Last Name", inputField: $contact.lastName)
+                        FormItemText(title:"Company", inputField: $contact.company)
+                        FormItemText(title:"Email", inputField: $contact.email)
+                        FormItemText(title:"Phone", inputField: $contact.phone)
+
                         //                        HStack {
                         //                            Text("Timezome").bold()
                         //                            TextField("Timezone", text: $contact.timezone).font(.body)

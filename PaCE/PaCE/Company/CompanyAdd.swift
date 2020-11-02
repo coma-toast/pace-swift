@@ -28,7 +28,7 @@ struct CompanyAdd: View {
                         FormItemText(title: "Address", inputField: $company.address)
                         FormItemText(title: "City", inputField: $company.city)
                         FormItemText(title: "State", inputField: $company.state)
-                        FormItemNumber(title: "Zip", inputField: $company.zip)
+                        FormItemNumberString(title: "Zip", inputField: $company.zip)
 
                     }
                     Spacer()

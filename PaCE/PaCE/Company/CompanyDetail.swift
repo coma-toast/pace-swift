@@ -13,7 +13,8 @@ struct CompanyDetail: View {
     let company: Binding<Company>
     var labels: [String] = []
     var data: [String] = []
-    let hiddenFields: [String] = ["instance", "id", "favorite", "deleted"]
+    let hiddenFields: [String] = ["instance", "id", "favorite", "deleted", "created"]
+    let dateFields: [String] = ["created"]
     @EnvironmentObject var companyDatastore: CompanyStore
     @State var showEditSheet = false
     init(company: Binding<Company>) {
@@ -40,6 +41,7 @@ struct CompanyDetail: View {
         for child in mirror.children {
             if let currentLabel = child.label {
                 if !hiddenFields.contains(currentLabel) {
+//                if (!hiddenFields.contains(currentLabel) || !dateFields.contains(currentLabel)) {
                     self.labels.append(String.titleCase(child.label ?? "")())
                     self.data.append(child.value as! String)
                 }
@@ -79,7 +81,7 @@ struct CompanyDetail_Previews: PreviewProvider {
     }
 
     struct PreviewWrapper: View {
-        @State(initialValue:  Company(id: "123", created: Date(), name: "Company, Co.", primaryContact: "123", phone: "1234567890", email: "fake@company.com", address: "123 fake st", city: "Beverly Hills", state: "CA", zip: 90210, favorite: true, deleted: false, instance: "123"))
+        @State(initialValue:  Company(id: "123", created: Date(), name: "Company, Co.", primaryContact: "123", phone: "1234567890", email: "fake@company.com", address: "123 fake st", city: "Beverly Hills", state: "CA", zip: "90210", favorite: true, deleted: false, instance: "123"))
         var company: Company
 
         var body: some View {

@@ -18,7 +18,8 @@ struct CompanyView: View {
             ZStack(alignment: .center) {
                 VStack {
                     List {
-                        ForEach(self.companyDatastore.companies.indexed(), id: \.1.id) { index, _ in                                 CompanyViewItem(company: self.$companyDatastore.companies[index])
+                        ForEach(self.companyDatastore.companies.indices, id: \.self) { index in
+                            CompanyViewItem(company: self.$companyDatastore.companies[index])
                         }.onDelete(perform: { indexSet in
                             removeCompany(atOffset: indexSet, companyDatastore: self.companyDatastore)
                         })
