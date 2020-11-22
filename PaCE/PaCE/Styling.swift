@@ -10,7 +10,9 @@ import SwiftUI
 
 struct Styling: View {
     //    @EnvironmentObject var contactDatastore: ContactStore
+    @EnvironmentObject var companyDatastore: CompanyStore
     @State var date = Date()
+    @State var company = Company()
     var body: some View {
         VStack{
             VStack {
@@ -53,8 +55,9 @@ struct Styling: View {
                 FormItemDate(title: "Date", inputField: $date)
                 FormItemNumber(title: "Quantity", inputField: .constant(3))
                 FormItemNumberString(title: "Zip Code", inputField: .constant("90210"))
+                FormCompanyPicker(companyDatastore: companyDatastore, inputField: $company)
                 Spacer()
-                Text("Toolbar:")
+//                Text("Toolbar:")
             }
             //            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
             //            Text("zstack")
@@ -259,15 +262,20 @@ struct FormFavorite: View {
 
 
 struct FormCompanyPicker: View {
-    @EnvironmentObject var companyDatastore: CompanyStore
+    @Binding var companyDatastore: CompanyStore
     @Binding var inputField: Company
     var body: some View {
         HStack {
+//            Menu
             Picker("Company", selection: $inputField) {
-                ForEach(Array(arrayLiteral: companyDatastore.$companies), id: \.self) {
-                    company in
-                    Text(company.name)
+                ForEach(companyDatastore, id: \.self.id) {
+                    index in
+                    Text(companyDatastore[index].Name)
                 }
+//                ForEach(Array(arrayLiteral: companyDatastore.$companies), id: \.self) {
+//                    company in
+////                    Text(company.name)
+//                }
             }
         }
     }
@@ -292,6 +300,6 @@ struct LoadingScreen: View {
 
 struct Styling_Previews: PreviewProvider {
     static var previews: some View {
-        Styling()
+        NavigationView {Styling()}
     }
 }
