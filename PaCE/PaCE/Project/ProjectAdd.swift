@@ -21,33 +21,39 @@ struct ProjectAdd: View {
                     // TODO: EditView(labels: labels, data: data)
                     // TODO: Form validation (not empty fields)
                     Form {
-                        FormItemText(title: "Name", inputField: $project.name)
-                        FormItemText(title: "Client", inputField: $project.clientName)
-                        FormItemText(title: "Address", inputField: $project.address)
-                        FormItemText(title: "City", inputField: $project.city)
-                        FormItemText(title: "State", inputField: $project.state)
-                        FormItemNumber(title: "Zip Code", inputField: $project.zip)
-                        FormItemContact(title: "Project Manager", inputField: $project.projectManager)
+                        VStack {
+                            FormItemText(title: "Name", inputField: $project.name)
+//                            FormItemText(title: "Client", inputField: $project.client.name)
+                            FormItemText(title: "Address", inputField: $project.address)
+                            FormItemText(title: "City", inputField: $project.city)
+                            FormItemText(title: "State", inputField: $project.state)
+                            FormItemNumber(title: "Zip Code", inputField: $project.zip)
+                            FormCompanyPicker(title: "Company", inputField: $project.client.name)
+                            Text("ID \($project.clientID.wrappedValue)")
+                            Text("city \($project.client.city.wrappedValue)")
+                        }
+                        VStack {
+                            FormItemContact(title: "Project Manager", inputField: $project.projectManager)
 
-                        FormItemDate(title: "Start Date" , inputField: $project.startDate)
-
-
-                        FormItemDate(title: "Due Date", inputField: $project.dueDate)
-
-
-                        //                    FormItemDate(title: "", inputField: $project.)
-                        //
-                        //
-                        //                    FormItem(title: "", inputField: $project.)
-                        //
-                        //
-                        //                    FormItem(title: "", inputField: $project.)
-                        //
-                        //
-                        //                    FormItem(title: "", inputField: $project.)
+                            FormItemDate(title: "Start Date" , inputField: $project.startDate)
 
 
+                            FormItemDate(title: "Due Date", inputField: $project.dueDate)
 
+
+                            //                    FormItemDate(title: "", inputField: $project.)
+                            //
+                            //
+                            //                    FormItem(title: "", inputField: $project.)
+                            //
+                            //
+                            //                    FormItem(title: "", inputField: $project.)
+                            //
+                            //
+                            //                    FormItem(title: "", inputField: $project.)
+
+
+                        }
                         Spacer()
                     }
                     .blur(radius: self.projectDatastore.isLoading ? 3 : 0)
@@ -58,6 +64,7 @@ struct ProjectAdd: View {
                 }
                 .navigationBarTitle(Text("Add Project"), displayMode: .inline)
                 .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
+            }
                 .toolbar(content: {
                     ToolbarItem(placement: .bottomBar) {
                         Button("Reset") {
@@ -74,7 +81,7 @@ struct ProjectAdd: View {
                         }
                     }
                 })
-            }
+
         }
     }
 }

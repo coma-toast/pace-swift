@@ -39,8 +39,9 @@ final class CompanyStore: ObservableObject {
     }
 
     // TODO: I am here. start building out Company, then make this function, then finish ProjectAdd so I can link a company
-    func getCompaniesByCompany(company: Company) {
-        // TODO: this
+    func getCompanyById(id: String) -> Company {
+        guard let index = companies.firstIndex(where: {$0.id == id}) else { return Company() }
+        return companies[index]
     }
 
     func updateCompany(company: Company) {

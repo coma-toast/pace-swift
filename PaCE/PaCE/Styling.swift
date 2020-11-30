@@ -14,73 +14,69 @@ struct Styling: View {
     @State var date = Date()
     @State var company = Company()
     var body: some View {
-        VStack{
-            VStack {
-                HStack {
-                    Text("Styling examples").font(.title)
+        ScrollView {
+            VStack{
+                VStack {
+                    HStack {
+                        Text("Styling examples").font(.title)
+                        Spacer()
+                    }
+                    HStack {
+                        Text("Here are icon examples:")
+                        Spacer()
+                    }
+                    NormalIcon(left: "A", right: "4")
+                    SingleIcon(iconString: "Test")
+                }
+                VStack {
+                    HStack {
+                        Text("Button Styles:")
+                        Spacer()
+                    }
+                    Button(action: {
+                        print("Neumorphic")
+                    }, label: {
+                        Text("Neumorphic")
+                    }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+                    //                Text("Loading screen:")
+                    //                Button(action: {
+                    //                    self.contactDatastore.isLoading = true
+                    //                    sleep(2)
+                    //                    self.contactDatastore.isLoading = false
+                    //                }, label: {
+                    //                    Image(systemName: "timer")
+                    //                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
+                }
+                VStack {
+                    HStack {
+                        Text("Form Items:")
+                        Spacer()
+                    }
+                    FormItemText(title: "Title", inputField: .constant("String"))
+                    FormItemDate(title: "Date", inputField: $date)
+                    FormItemNumber(title: "Quantity", inputField: .constant(3))
+                    FormItemNumberString(title: "Zip Code", inputField: .constant("90210"))
+                    FormCompanyPicker(title: "Company", inputField: $company.name)
                     Spacer()
                 }
-                HStack {
-                    Text("Here are icon examples:")
-                    Spacer()
+                VStack {
+                    Text("next vstack")
                 }
-                NormalIcon(left: "A", right: "4")
-                SingleIcon(iconString: "Test")
             }
-            VStack {
-                HStack {
-                    Text("Button Styles:")
+            .toolbar(content: {
+                ToolbarItem(placement: .bottomBar) {
+                    Button("Toolbar Button") {}
+                }
+                ToolbarItem(placement: .bottomBar) {
                     Spacer()
                 }
-                Button(action: {
-                    print("Neumorphic")
-                }, label: {
-                    Text("Neumorphic")
-                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
-                //                Text("Loading screen:")
-                //                Button(action: {
-                //                    self.contactDatastore.isLoading = true
-                //                    sleep(2)
-                //                    self.contactDatastore.isLoading = false
-                //                }, label: {
-                //                    Image(systemName: "timer")
-                //                }).buttonStyle(NeumorphicButtonStyle(bgColor: Color.gray))
-            }
-            VStack {
-                HStack {
-                    Text("Form Items:")
-                    Spacer()
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action: {}, label: {
+                        Image(systemName: "trash")
+                    })
                 }
-                FormItemText(title: "Title", inputField: .constant("String"))
-                FormItemDate(title: "Date", inputField: $date)
-                FormItemNumber(title: "Quantity", inputField: .constant(3))
-                FormItemNumberString(title: "Zip Code", inputField: .constant("90210"))
-                FormCompanyPicker(companyDatastore: companyDatastore, inputField: $company)
-                Spacer()
-//                Text("Toolbar:")
-            }
-            //            .blur(radius: self.contactDatastore.isLoading ? 3 : 0)
-            //            Text("zstack")
-            //            if self.contactDatastore.isLoading {
-            //                VStack {
-            //                    Text("LOADING TRUE")
-            //                    LoadingScreen(isLoading: self.contactDatastore.isLoading)
-            //                }
-            //            }
+            })
         }
-        .toolbar(content: {
-            ToolbarItem(placement: .bottomBar) {
-                Button("Toolbar Button") {}
-            }
-            ToolbarItem(placement: .bottomBar) {
-                Spacer()
-            }
-            ToolbarItem(placement: .bottomBar) {
-                Button(action: {}, label: {
-                    Image(systemName: "trash")
-                })
-            }
-        })
     }
 }
 
@@ -233,7 +229,7 @@ struct FormItemNumberString: View {
             Text(title).bold()
             TextField(title, text: $inputField).font(.body)
             // TODO: should it be an int? string of numbers doesn't seem to work?
-//            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
+            //            TextField(title, value: $inputField, formatter: NumberFormatter()).font(.body)
         }
     }
 }
@@ -260,23 +256,29 @@ struct FormFavorite: View {
     }
 }
 
-
 struct FormCompanyPicker: View {
-    @Binding var companyDatastore: CompanyStore
-    @Binding var inputField: Company
+    @EnvironmentObject var companyDatastore: CompanyStore
+    var title: String
+    @Binding var inputField: String
     var body: some View {
-        HStack {
-//            Menu
-            Picker("Company", selection: $inputField) {
-                ForEach(companyDatastore, id: \.self.id) {
-                    index in
-                    Text(companyDatastore[index].Name)
+        VStack {
+            Picker(selection: $inputField, label: Text(title), content: {
+                ForEach(companyDatastore.companies, id: \.id) { company in
+                    Text(company.name).tag(company)
                 }
-//                ForEach(Array(arrayLiteral: companyDatastore.$companies), id: \.self) {
-//                    company in
-////                    Text(company.name)
+            })
+            // How do i get the whole company to be returned? https://www.reddit.com/r/SwiftUI/comments/e2kmox/picker_with_complex_type/
+//            HStack {
+//                //            Text(title).bold()
+//                Picker(title, selection: $inputField) {
+//                    ForEach(self.companyDatastore.companies) { company in
+//                        Text(company.id)
+//                        //                    ForEach(self.companyDatastore.companies.indices, id: \.self) { index in
+//                        //                    CompanyViewItem(company: self.$companyDatastore.companies[index])
+//                        //                        Text(self.$companyDatastore.companies[index].name.wrappedValue)
+//                    }
 //                }
-            }
+//            }
         }
     }
 }

@@ -13,7 +13,7 @@ struct ProjectEdit: View {
     @Binding var showEditSheet: Bool
     @State var project: Project
     @EnvironmentObject var projectDatastore: ProjectStore
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
@@ -128,7 +128,7 @@ struct ProjectEdit: View {
             }
             HStack {
                 Text("ClientName").bold()
-                TextField("ClientName", text: project.clientName)
+                TextField("ClientName", text: project.client.name)
             }
             HStack {
                 Text("eORName").bold()

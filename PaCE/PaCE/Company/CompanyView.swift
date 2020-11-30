@@ -19,7 +19,7 @@ struct CompanyView: View {
                 VStack {
                     List {
                         ForEach(self.companyDatastore.companies.indices, id: \.self) { index in
-                            CompanyViewItem(company: self.$companyDatastore.companies[index])
+                            CompanyViewItemNav(company: self.$companyDatastore.companies[index])
                         }.onDelete(perform: { indexSet in
                             removeCompany(atOffset: indexSet, companyDatastore: self.companyDatastore)
                         })
@@ -59,24 +59,34 @@ func removeCompany(atOffset: IndexSet, companyDatastore: CompanyStore) {
     }
 }
 
-struct CompanyViewItem: View {
+struct CompanyViewItemNav: View {
     @EnvironmentObject var companyDatastore: CompanyStore
     let company: Binding<Company>
 
     var body: some View {
         if company.deleted.wrappedValue == false {
             NavigationLink(destination: CompanyDetail(company: company)) {
-                HStack{
-                    CompanyView.Icon(company: company)
-                    VStack(alignment: .leading) {
-                        Text(company.name.wrappedValue)
-                    }
-                    Spacer()
-                }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+                CompanyViewItem(company: company)
             }.buttonStyle(PlainButtonStyle())
         }
     }
 }
+
+
+struct CompanyViewItem: View {
+    let company: Binding<Company>
+
+    var body: some View {
+        HStack{
+            CompanyView.Icon(company: company)
+            VStack(alignment: .leading) {
+                Text(company.name.wrappedValue)
+            }
+            Spacer()
+        }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)
+    }
+}
+
 
 extension CompanyView {
     struct Icon: View {

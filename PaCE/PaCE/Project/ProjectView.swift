@@ -70,7 +70,7 @@ struct ProjectViewItem: View {
                     ProjectView.Icon(project: project)
                     VStack(alignment: .leading) {
                         Text(project.name.wrappedValue)
-                        Text(project.clientName.wrappedValue).font(.subheadline)
+                        Text(project.clientID.wrappedValue).font(.subheadline)
                     }
                     Spacer()
                 }.frame(minWidth: 0, maxWidth: .infinity).padding().border(Color.gray, width: 1).shadow(radius: 0.5)

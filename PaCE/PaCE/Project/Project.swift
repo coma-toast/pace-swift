@@ -13,6 +13,7 @@ import Combine
 final class ProjectStore: ObservableObject {
     @Published var projects: [Project] = []
     @Published var isLoading:Bool = false
+    @EnvironmentObject var companyDatastore: CompanyStore
     init() {
         getAllProjects()
     }
@@ -24,8 +25,6 @@ final class ProjectStore: ObservableObject {
         API().call(endpoint: "project", method: "GET", payload: payloadData) { result in
             switch result {
             case .success(let projects):
-                // dev code
-                print(projects)
                 self.projects = projects
                 self.isLoading = false
             case .failure(let error):
@@ -33,6 +32,11 @@ final class ProjectStore: ObservableObject {
                 print(error)
                 self.isLoading = false
             }
+        }
+
+        // Get the full Company for the client
+        for i in self.projects.indices {
+            self.projects[i].client = companyDatastore.getCompanyById(id: self.projects[i].id)
         }
     }
     
@@ -112,7 +116,7 @@ final class ProjectStore: ObservableObject {
     }
 }
 
-struct Project: Codable, Identifiable {
+struct Project: Codable, Identifiable, Hashable {
     var id: String = ""
     var created: Date = Date()
     var deleted: Bool = false
@@ -124,7 +128,8 @@ struct Project: Codable, Identifiable {
     var state: String = ""
     var zip: Int = 0
     var projectManager: String = ""
-    var clientName: String = ""
+    var clientID: String = ""
+    var client: Company = Company()
     var eORName: String = ""
     var detailerName: String = ""
     var inspectionLab: String = ""
@@ -149,7 +154,7 @@ struct Project: Codable, Identifiable {
         case state = "state"
         case zip = "zip"
         case projectManager = "projectManager"
-        case clientName = "clientName"
+        case clientID = "clientID"
         case eORName = "eORName"
         case detailerName = "detailerName"
         case inspectionLab = "inspectionLab"
