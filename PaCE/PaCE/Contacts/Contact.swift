@@ -127,7 +127,7 @@ final class ContactStore: ObservableObject {
     }
 }
 
-struct Contact: Codable, Identifiable {
+struct Contact: Codable, Identifiable, Hashable {
     var id: String = ""
     var created: String = ""
     var firstName: String = ""

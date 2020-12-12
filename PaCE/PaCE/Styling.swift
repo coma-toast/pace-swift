@@ -56,7 +56,7 @@ struct Styling: View {
                     FormItemDate(title: "Date", inputField: $date)
                     FormItemNumber(title: "Quantity", inputField: .constant(3))
                     FormItemNumberString(title: "Zip Code", inputField: .constant("90210"))
-                    FormCompanyPicker(title: "Company", inputField: $company.name)
+                    FormCompanyPicker(title: "Company", selectedCompany: $company)
                     Spacer()
                 }
                 VStack {
@@ -259,26 +259,29 @@ struct FormFavorite: View {
 struct FormCompanyPicker: View {
     @EnvironmentObject var companyDatastore: CompanyStore
     var title: String
-    @Binding var inputField: String
+    @Binding var selectedCompany: Company
     var body: some View {
         VStack {
-            Picker(selection: $inputField, label: Text(title), content: {
+            Picker(selection: $selectedCompany, label: Text(title), content: {
                 ForEach(companyDatastore.companies, id: \.id) { company in
                     Text(company.name).tag(company)
                 }
             })
-            // How do i get the whole company to be returned? https://www.reddit.com/r/SwiftUI/comments/e2kmox/picker_with_complex_type/
-//            HStack {
-//                //            Text(title).bold()
-//                Picker(title, selection: $inputField) {
-//                    ForEach(self.companyDatastore.companies) { company in
-//                        Text(company.id)
-//                        //                    ForEach(self.companyDatastore.companies.indices, id: \.self) { index in
-//                        //                    CompanyViewItem(company: self.$companyDatastore.companies[index])
-//                        //                        Text(self.$companyDatastore.companies[index].name.wrappedValue)
-//                    }
-//                }
-//            }
+        }
+    }
+}
+
+struct FormContactPicker: View {
+    @EnvironmentObject var contactDatastore: ContactStore
+    var title: String
+    @Binding var selectedContact: Contact
+    var body: some View {
+        VStack {
+            Picker(selection: $selectedContact, label: Text(title), content: {
+                ForEach(contactDatastore.contacts, id: \.id) { contact in
+                    Text("\(contact.firstName) \(contact.lastName)").tag(contact)
+                }
+            })
         }
     }
 }

@@ -16,88 +16,51 @@ struct ProjectAdd: View {
 
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                VStack {
-                    // TODO: EditView(labels: labels, data: data)
-                    // TODO: Form validation (not empty fields)
-                    Form {
-                        VStack {
-                            FormItemText(title: "Name", inputField: $project.name)
-//                            FormItemText(title: "Client", inputField: $project.client.name)
-                            FormItemText(title: "Address", inputField: $project.address)
-                            FormItemText(title: "City", inputField: $project.city)
-                            FormItemText(title: "State", inputField: $project.state)
-                            FormItemNumber(title: "Zip Code", inputField: $project.zip)
-                            FormCompanyPicker(title: "Company", inputField: $project.client.name)
-                            Text("ID \($project.clientID.wrappedValue)")
-                            Text("city \($project.client.city.wrappedValue)")
-                        }
-                        VStack {
-                            FormItemContact(title: "Project Manager", inputField: $project.projectManager)
-
-                            FormItemDate(title: "Start Date" , inputField: $project.startDate)
-
-
-                            FormItemDate(title: "Due Date", inputField: $project.dueDate)
-
-
-                            //                    FormItemDate(title: "", inputField: $project.)
-                            //
-                            //
-                            //                    FormItem(title: "", inputField: $project.)
-                            //
-                            //
-                            //                    FormItem(title: "", inputField: $project.)
-                            //
-                            //
-                            //                    FormItem(title: "", inputField: $project.)
-
-
-                        }
-                        Spacer()
+            VStack {
+                // TODO: EditView(labels: labels, data: data)
+                // TODO: Form validation (not empty fields)
+                Form {
+                    VStack {
+                        FormItemText(title: "Name", inputField: $project.name)
+                        FormItemText(title: "Address", inputField: $project.address)
+                        FormItemText(title: "City", inputField: $project.city)
+                        FormItemText(title: "State", inputField: $project.state)
+                        FormItemNumber(title: "Zip Code", inputField: $project.zip)
                     }
-                    .blur(radius: self.projectDatastore.isLoading ? 3 : 0)
-
-                    if self.projectDatastore.isLoading {
-                        ProjectLoadingView()
+                    VStack {
+                        FormCompanyPicker(title: "Company", selectedCompany: $project.client)
+                        FormContactPicker(title: "Project Manager", selectedContact: $project.projectManagerContact)
+                        FormItemDate(title: "Start Date" , inputField: $project.startDate)
+                        FormItemDate(title: "Due Date", inputField: $project.dueDate)
                     }
+                    Spacer()
                 }
-                .navigationBarTitle(Text("Add Project"), displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
+                .blur(radius: self.projectDatastore.isLoading ? 3 : 0)
+
+                if self.projectDatastore.isLoading {
+                    ProjectLoadingView()
+                }
             }
-                .toolbar(content: {
-                    ToolbarItem(placement: .bottomBar) {
-                        Button("Reset") {
-                            self.project = Project()
-                        }
-                    }
-                    ToolbarItem(placement: .bottomBar) {
-                        Spacer()
-                    }
-                    ToolbarItem(placement: .bottomBar) {
-                        Button("Submit") {
-                            self.projectDatastore.addProject(project: self.project)
-                            self.showAddSheet = false
-                        }
-                    }
-                })
-
+            .navigationBarTitle(Text("Add Project"), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
         }
-    }
-}
+        .toolbar(content: {
+            ToolbarItem(placement: .bottomBar) {
+                Button("Reset") {
+                    self.project = Project()
+                }
+            }
+            ToolbarItem(placement: .bottomBar) {
+                Spacer()
+            }
+            ToolbarItem(placement: .bottomBar) {
+                Button("Submit") {
+                    self.projectDatastore.addProject(project: self.project)
+                    self.showAddSheet = false
+                }
+            }
+        })
 
-
-
-struct FormItemContact: View {
-    var title: String
-    // TODO: getContactsByCompany(company:
-    var contact: Contact = Contact()
-    @Binding var inputField: String
-    var body: some View {
-        HStack {
-            Text(title).bold()
-            TextField(title, text: $inputField).font(.body)
-        }
     }
 }
 

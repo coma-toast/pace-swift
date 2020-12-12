@@ -128,6 +128,7 @@ struct Project: Codable, Identifiable, Hashable {
     var state: String = ""
     var zip: Int = 0
     var projectManager: String = ""
+    var projectManagerContact: Contact = Contact()
     var clientID: String = ""
     var client: Company = Company()
     var eORName: String = ""
