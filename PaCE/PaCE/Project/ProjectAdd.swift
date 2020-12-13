@@ -17,7 +17,6 @@ struct ProjectAdd: View {
     var body: some View {
         NavigationView {
             VStack {
-                // TODO: EditView(labels: labels, data: data)
                 // TODO: Form validation (not empty fields)
                 Form {
                     VStack {
@@ -30,6 +29,21 @@ struct ProjectAdd: View {
                     VStack {
                         FormCompanyPicker(title: "Company", selectedCompany: $project.client)
                         FormContactPicker(title: "Project Manager", selectedContact: $project.projectManagerContact)
+                    }
+                    VStack {
+                        FormContactPicker(title:"eORName", selectedContact: $project.eORName)
+                        FormContactPicker(title:"Detailer Name", selectedContact: $project.detailerName)
+                        FormContactPicker(title:"Inspection Lab", selectedContact: $project.inspectionLab)
+                        FormContactPicker(title:"Steel Erector Name", selectedContact: $project.steelErectorName)
+                        FormContactPicker(title:"Steel Fabricator Name", selectedContact: $project.steelFabricatorName)
+                        FormContactPicker(title:"General Contractor", selectedContact: $project.generalContractor)
+                        FormContactPicker(title:"Primary Contact Name", selectedContact: $project.primaryContactName)
+                        FormItemText(title:"Primary Contact Phone", inputField: $project.primaryContactPhone)
+                        FormItemText(title:"Primary Contact Email", inputField: $project.primaryContactEmail)
+                    }
+                    VStack {
+                        FormItemNumber(title:"Square Footage", inputField: $project.squareFootage)
+                        FormItemNumber(title:"Weight In Tons", inputField: $project.weightInTons)
                         FormItemDate(title: "Start Date" , inputField: $project.startDate)
                         FormItemDate(title: "Due Date", inputField: $project.dueDate)
                     }
@@ -43,7 +57,7 @@ struct ProjectAdd: View {
             }
             .navigationBarTitle(Text("Add Project"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {self.showAddSheet = false}, label: {Text("Done")}))
-        }
+
         .toolbar(content: {
             ToolbarItem(placement: .bottomBar) {
                 Button("Reset") {
@@ -60,7 +74,7 @@ struct ProjectAdd: View {
                 }
             }
         })
-
+        }
     }
 }
 

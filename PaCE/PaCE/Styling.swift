@@ -261,13 +261,13 @@ struct FormCompanyPicker: View {
     var title: String
     @Binding var selectedCompany: Company
     var body: some View {
-        VStack {
-            Picker(selection: $selectedCompany, label: Text(title), content: {
+//        VStack {
+            Picker(selection: $selectedCompany, label: Text(title).bold(), content: {
                 ForEach(companyDatastore.companies, id: \.id) { company in
                     Text(company.name).tag(company)
                 }
             })
-        }
+//        }
     }
 }
 
@@ -277,7 +277,7 @@ struct FormContactPicker: View {
     @Binding var selectedContact: Contact
     var body: some View {
         VStack {
-            Picker(selection: $selectedContact, label: Text(title), content: {
+            Picker(selection: $selectedContact, label: Text(title).bold(), content: {
                 ForEach(contactDatastore.contacts, id: \.id) { contact in
                     Text("\(contact.firstName) \(contact.lastName)").tag(contact)
                 }

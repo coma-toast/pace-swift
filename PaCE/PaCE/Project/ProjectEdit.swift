@@ -104,7 +104,7 @@ struct ProjectEdit: View {
         var body: some View {
             HStack {
                 Text("Primary Contact Name").bold()
-                TextField("Primary Contact Name", text: project.primaryContactName)
+                TextField("Primary Contact Name", text: project.primaryContactNameID)
             }
             HStack {
                 Text("Primary Contact Phone").bold()
@@ -123,36 +123,36 @@ struct ProjectEdit: View {
         var body: some View {
 
             HStack {
-                Text("ProjectManager").bold()
-                TextField("ProjectManager", text: project.projectManager)
+                Text("Project Manager").bold()
+                TextField("Project Manager", text: project.projectManager)
             }
             HStack {
-                Text("ClientName").bold()
-                TextField("ClientName", text: project.client.name)
+                Text("Client Name").bold()
+                TextField("Client Name", text: project.client.name)
             }
             HStack {
-                Text("eORName").bold()
-                TextField("eORName", text: project.eORName)
+                Text("eOR Name").bold()
+                TextField("eOR Name", text: project.eORNameID)
             }
             HStack {
                 Text("Detailer Name").bold()
-                TextField("Detailer Name", text: project.detailerName)
+                TextField("Detailer Name", text: project.detailerNameID)
             }
             HStack {
                 Text("Inspection Lab").bold()
-                TextField("Inspection Lab", text: project.inspectionLab)
+                TextField("Inspection Lab", text: project.inspectionLabID)
             }
             HStack {
                 Text("Steel Erector Name").bold()
-                TextField("Steel Erector Name", text: project.steelErectorName)
+                TextField("Steel Erector Name", text: project.steelErectorNameID)
             }
             HStack {
                 Text("Steel Fabricator Name").bold()
-                TextField("Steel Fabricator Name", text: project.steelFabricatorName)
+                TextField("Steel Fabricator Name", text: project.steelFabricatorNameID)
             }
             HStack {
                 Text("General Contractor").bold()
-                TextField("General Contractor", text: project.generalContractor)
+                TextField("General Contractor", text: project.generalContractorID)
 
             }
         }
