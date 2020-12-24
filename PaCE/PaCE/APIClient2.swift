@@ -19,11 +19,15 @@ class API {
     private let baseUrl = "https://pace-api.jasondale.me/api/"
     func call<T: Codable>(endpoint: String, method: String, payload: T? = nil, completion: @escaping (Result<T, ApiError>) -> Void) {
         // Config
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+//        let formatter = ISO8601DateFormatter()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = ISO8601DateFormatter
+//        2020-12-24T09:37:47-05:00
+//        formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        decoder.dateDecodingStrategy = .formatted(formatter)
+//        decoder.dateDecodingStrategy = .formatted(formatter)
+        decoder.dateDecodingStrategy = .iso8601
 
         guard let url = URL(string: baseUrl+endpoint) else {return}
         var request = URLRequest(url: url)

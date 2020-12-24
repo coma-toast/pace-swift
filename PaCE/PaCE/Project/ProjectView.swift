@@ -15,42 +15,40 @@ struct ProjectView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .center) {
-                VStack {
-                    List {
-                        ForEach(self.projectDatastore.projects.indexed(), id: \.1.id) { index, _ in
-                            ProjectViewItem(project: self.$projectDatastore.projects[index])
-                        }.onDelete(perform: { indexSet in
-                            removeProject(atOffset: indexSet, projectDatastore: self.projectDatastore)
-                        })
-                    }
-                    
-                }.blur(radius: self.projectDatastore.isLoading ? 3 : 0)
-                if self.projectDatastore.isLoading {
-                    ProjectLoadingView()
+            //            ZStack(alignment: .center) {
+            VStack {
+                List {
+                    ForEach(self.projectDatastore.projects.indexed(), id: \.1.id) { index, _ in
+                        ProjectViewItem(project: self.$projectDatastore.projects[index])
+                    }.onDelete(perform: { indexSet in
+                        removeProject(atOffset: indexSet, projectDatastore: self.projectDatastore)
+                    })
                 }
-                Spacer()
-            }
-            .navigationBarTitle("Projects")
-            .navigationBarItems(trailing:
-                                    HStack {
-                                        Button(action: {
-                                            self.showAddSheet.toggle()
-                                        }) {
-                                            Image(systemName: "plus")
-                                        }.sheet(isPresented: $showAddSheet) {
-                                            ProjectAdd(showAddSheet: $showAddSheet).environmentObject(projectDatastore)
-                                        }
 
-                                        Button(action: {
-                                            self.projectDatastore.getAllProjects()
-                                        }) {
-                                            Image(systemName: "arrow.clockwise")
-                                        }
-                                    })
+            }.blur(radius: self.projectDatastore.isLoading ? 3 : 0)
+            if self.projectDatastore.isLoading {
+                ProjectLoadingView()
+            }
+            Spacer()
         }
+        .navigationBarTitle("Projects")
+        .navigationBarItems(trailing:
+                                HStack {
+                                    NavigationLink(destination: ProjectAdd(showAddSheet: $showAddSheet).environmentObject(projectDatastore)) {
+                                        Image(systemName: "plus")
+                                    }
+                                    Button(action: {
+                                        self.projectDatastore.getAllProjects()
+                                    }) {
+                                        Image(systemName: "arrow.clockwise")
+                                    }
+                                })
     }
 }
+
+
+
+//}
 
 func removeProject(atOffset: IndexSet, projectDatastore: ProjectStore) {
     let tempProjects = projectDatastore.projects
@@ -58,6 +56,15 @@ func removeProject(atOffset: IndexSet, projectDatastore: ProjectStore) {
         projectDatastore.deleteProject(project: tempProjects[i])
     }
 }
+
+//struct AddSheetView: View {
+//    @State var showAddSheet = false
+//    @EnvironmentObject var projectDatastore: ProjectStore
+//
+//    var body: some View {
+//
+//    }
+//}
 
 struct ProjectViewItem: View {
     @EnvironmentObject var projectDatastore: ProjectStore

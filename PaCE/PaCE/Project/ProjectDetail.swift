@@ -15,6 +15,8 @@ struct ProjectDetail: View {
     var data: [String] = []
     let hiddenFields: [String] = ["instance", "id", "favorite", "deleted"]
     let dateFields: [String] = ["created", "startDate", "dueDate"]
+    let contactFields: [String] = ["projectManagerContact", "eORName", "detailerName", "inspectionLab", "steelErectorName", "steelFabricatorName", "generalContractor", "primaryContactName"]
+    let companyFields: [String] = ["client"]
     @EnvironmentObject var projectDatastore: ProjectStore
     @State var showEditSheet = false
     init(project: Binding<Project>) {
@@ -41,7 +43,7 @@ struct ProjectDetail: View {
         
         for child in mirror.children {
             if let currentLabel = child.label {
-                if !hiddenFields.contains(currentLabel), !dateFields.contains(currentLabel)  {
+                if !hiddenFields.contains(currentLabel), !dateFields.contains(currentLabel), !contactFields.contains(currentLabel), !companyFields.contains(currentLabel)  {
                     self.labels.append(String.titleCase(child.label ?? "")())
                     self.data.append((child.value as? String ?? String(child.value as! Int)))
                 }
