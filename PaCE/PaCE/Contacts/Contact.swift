@@ -46,6 +46,14 @@ final class ContactStore: ObservableObject {
         }
     }
 
+    func getCachedContactByID(id: String) {
+        ForEach(contacts.indexed(), id: \.self) { index in
+            if id == index {
+                return contacts[index]
+            }
+        }
+    }
+
     // TODO: I am here. start building out Company, then make this function, then finish ProjectAdd so I can link a company
     func getContactsByCompany(company: Company) {
         // TODO: this
